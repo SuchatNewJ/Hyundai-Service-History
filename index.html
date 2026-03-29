@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Hyundai Stargazer — Service History</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@300;400;500;600;700&family=Rajdhani:wght@600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<style>
+:root{--bg:#f0f4f8;--wh:#fff;--s2:#f7f9fc;--bd:#e2e8f0;--bd2:#cbd5e1;--acc:#002C5F;--ac2:#00aad2;--acl:#e8f4fb;--red:#dc2626;--grn:#16a34a;--grl:#dcfce7;--tx:#1e293b;--t2:#64748b;--t3:#94a3b8;--r:14px;--rs:10px;--sh:0 1px 3px rgba(0,0,0,.07),0 4px 14px rgba(0,0,0,.05);--shl:0 8px 32px rgba(0,0,0,.18);}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
+html,body{height:100%;}
+body{font-family:'Noto Sans Thai',sans-serif;background:var(--bg);color:var(--tx);font-size:15px;overscroll-behavior:none;}
+.app{display:flex;flex-direction:column;height:100vh;max-width:480px;margin:0 auto;background:var(--bg);}
+/* HEADER */
+.hdr{background:var(--acc);padding:14px 16px 12px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0;box-shadow:0 2px 8px rgba(0,44,95,.3);}
+.hdr-l{display:flex;align-items:center;gap:10px;}
+.hlogo{width:36px;height:36px;background:#fff;border-radius:8px;display:flex;align-items:center;justify-content:center;font-family:'Rajdhani',sans-serif;font-weight:700;font-size:20px;color:var(--acc);flex-shrink:0;}
+.htitle .h1{color:#fff;font-size:14px;font-weight:700;} .htitle .h2{color:rgba(255,255,255,.65);font-size:11px;margin-top:1px;}
+.cfgbtn{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.2);color:#fff;width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:16px;cursor:pointer;flex-shrink:0;}
+/* BOTTOM NAV */
+.bnav{display:flex;background:var(--wh);border-top:1px solid var(--bd);flex-shrink:0;box-shadow:0 -2px 12px rgba(0,0,0,.07);}
+.ni{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:10px 4px 8px;cursor:pointer;border:none;background:none;font-family:inherit;color:var(--t3);position:relative;}
+.ni.active{color:var(--acc);}
+.ni .ico{font-size:22px;line-height:1;margin-bottom:3px;} .ni .lbl{font-size:10px;font-weight:600;}
+.ni.active::after{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:32px;height:3px;background:var(--acc);border-radius:0 0 4px 4px;}
+.nbdg{position:absolute;top:6px;right:calc(50% - 20px);background:var(--ac2);color:#fff;font-size:9px;font-weight:700;min-width:16px;height:16px;border-radius:8px;display:flex;align-items:center;justify-content:center;padding:0 4px;}
+/* PAGES */
+.pages{flex:1;overflow:hidden;position:relative;}
+.page{position:absolute;inset:0;overflow-y:auto;display:none;-webkit-overflow-scrolling:touch;}
+.page.active{display:block;}
+.pc{padding:16px;}
+/* CARDS */
+.sc{background:var(--wh);border-radius:var(--r);box-shadow:var(--sh);margin-bottom:14px;overflow:hidden;}
+.sch{padding:14px 16px 12px;border-bottom:1px solid var(--bd);display:flex;align-items:center;gap:10px;}
+.sci{width:34px;height:34px;border-radius:8px;background:var(--acl);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;}
+.sct{font-size:14px;font-weight:700;color:var(--acc);} .scs{font-size:11px;color:var(--t3);margin-top:1px;}
+/* INFO ROWS */
+.ir{display:flex;align-items:baseline;justify-content:space-between;padding:10px 16px;border-bottom:1px solid var(--bd);}
+.ir:last-child{border-bottom:none;}
+.il{font-size:12px;color:var(--t2);flex-shrink:0;margin-right:12px;min-width:110px;}
+.iv{font-size:13px;font-weight:600;color:var(--tx);text-align:right;word-break:break-all;}
+.vbdg{background:#f1f5f9;border-radius:5px;padding:3px 7px;font-family:monospace;font-size:11px;display:inline-block;}
+/* INS STATUS */
+.isb{margin:12px 16px;padding:10px 14px;border-radius:var(--rs);display:flex;align-items:center;gap:10px;}
+.isb.exp{background:#fef2f2;border:1px solid #fecaca;} .isb.ok{background:var(--grl);border:1px solid #86efac;}
+.isb .isi{font-size:22px;}
+.isb .iss{font-size:13px;font-weight:700;} .isb.exp .iss{color:var(--red);} .isb.ok .iss{color:var(--grn);}
+.isb .isd{font-size:11px;color:var(--t2);margin-top:2px;}
+/* STATS */
+.srow{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px;}
+.scard{background:var(--wh);border-radius:var(--r);box-shadow:var(--sh);padding:14px 16px;}
+.slbl{font-size:10px;font-weight:600;color:var(--t2);letter-spacing:.8px;text-transform:uppercase;margin-bottom:4px;}
+.sval{font-family:'Rajdhani',sans-serif;font-size:24px;font-weight:700;color:var(--acc);line-height:1;}
+.ssub{font-size:11px;color:var(--t3);margin-top:3px;}
+/* CHIPS */
+.chips{display:flex;gap:6px;overflow-x:auto;padding-bottom:2px;margin-bottom:12px;scrollbar-width:none;}
+.chips::-webkit-scrollbar{display:none;}
+.chip{padding:6px 14px;border-radius:20px;font-size:12px;font-weight:600;border:1.5px solid var(--bd);background:var(--wh);color:var(--t2);cursor:pointer;white-space:nowrap;font-family:inherit;flex-shrink:0;}
+.chip.active{border-color:var(--acc);color:var(--acc);background:var(--acl);}
+/* TX */
+.tgh{padding:6px 4px 4px;font-size:12px;font-weight:700;color:var(--t2);text-transform:uppercase;display:flex;align-items:center;justify-content:space-between;}
+.ti{background:var(--wh);border-radius:var(--r);box-shadow:var(--sh);margin-bottom:10px;overflow:hidden;}
+.tih{padding:12px 14px 10px;display:flex;align-items:flex-start;justify-content:space-between;gap:10px;}
+.til{display:flex;align-items:center;gap:10px;flex:1;min-width:0;}
+.tci{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;}
+.cf{background:#fef9c3;} .co{background:#dbeafe;} .cr{background:#fee2e2;} .cw{background:#e0f2fe;} .ci{background:#f3e8ff;} .cp{background:#fce7f3;}
+.tcl{font-size:14px;font-weight:700;color:var(--tx);} .tdl{font-size:12px;color:var(--t2);margin-top:2px;}
+.tam{font-family:'Rajdhani',sans-serif;font-size:20px;font-weight:700;color:var(--acc);white-space:nowrap;}
+.tif{padding:8px 14px 10px;display:flex;align-items:center;justify-content:space-between;border-top:1px solid var(--bd);gap:6px;flex-wrap:wrap;}
+.tkm{display:inline-flex;align-items:center;gap:4px;background:var(--s2);border-radius:6px;padding:4px 8px;font-size:12px;color:var(--t2);font-weight:600;}
+.tdt{font-size:11px;color:var(--t2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:120px;}
+.tacts{display:flex;gap:6px;flex-shrink:0;margin-left:auto;}
+.tab{width:30px;height:30px;border-radius:8px;border:1px solid var(--bd);background:var(--s2);display:flex;align-items:center;justify-content:center;font-size:14px;cursor:pointer;}
+.tab.del{border-color:#fecaca;background:#fef2f2;}
+.maplnk{display:inline-flex;align-items:center;gap:4px;color:var(--ac2);font-size:12px;font-weight:600;text-decoration:none;background:var(--acl);padding:4px 8px;border-radius:6px;}
+.etx{text-align:center;padding:48px 20px;color:var(--t3);background:var(--wh);border-radius:var(--r);box-shadow:var(--sh);}
+.etx .ei{font-size:52px;margin-bottom:10px;}
+/* FAB */
+.fab{position:fixed;bottom:80px;right:20px;width:58px;height:58px;border-radius:50%;background:var(--ac2);color:#fff;display:flex;align-items:center;justify-content:center;font-size:28px;box-shadow:0 4px 20px rgba(0,170,210,.45);cursor:pointer;border:none;z-index:50;transition:transform .15s;}
+.fab:active{transform:scale(.92);}
+/* BOTTOM SHEET */
+.bso{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:200;display:none;align-items:flex-end;}
+.bso.open{display:flex;}
+.bs{background:var(--wh);border-radius:20px 20px 0 0;width:100%;max-height:93vh;overflow-y:auto;animation:bsup .28s cubic-bezier(.34,1.1,.64,1);-webkit-overflow-scrolling:touch;}
+@keyframes bsup{from{transform:translateY(100%);}to{transform:translateY(0);}}
+.bshdl{width:40px;height:4px;background:var(--bd2);border-radius:2px;margin:12px auto 4px;}
+.bshdr{padding:8px 20px 16px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--bd);}
+.bstitle{font-size:17px;font-weight:700;}
+.bsclose{background:var(--s2);border:none;width:30px;height:30px;border-radius:50%;font-size:15px;cursor:pointer;display:flex;align-items:center;justify-content:center;}
+.bsbody{padding:18px 20px 6px;} .bsftr{padding:12px 20px 24px;display:flex;gap:10px;}
+/* FORM */
+.fg{margin-bottom:16px;}
+.fg label{display:block;font-size:12px;font-weight:700;color:var(--t2);letter-spacing:.5px;margin-bottom:6px;text-transform:uppercase;}
+.fg label .req{color:var(--ac2);}
+.fi{width:100%;background:var(--s2);border:1.5px solid var(--bd);color:var(--tx);border-radius:var(--rs);padding:13px 14px;font-size:16px;font-family:inherit;outline:none;transition:border-color .15s;-webkit-appearance:none;}
+.fi:focus{border-color:var(--ac2);background:#fff;}
+.fi::placeholder{color:var(--t3);}
+select.fi{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24'%3E%3Cpath fill='%2364748b' d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;padding-right:36px;}
+textarea.fi{min-height:70px;resize:none;}
+/* FUEL TOGGLE */
+.ftgl{display:flex;border:1.5px solid var(--bd);border-radius:var(--rs);overflow:hidden;}
+.fb{flex:1;padding:13px;text-align:center;font-size:15px;font-weight:600;border:none;background:var(--s2);color:var(--t2);cursor:pointer;font-family:inherit;}
+.fb.active{background:var(--acc);color:#fff;}
+.fb:first-child{border-right:1px solid var(--bd);}
+/* MAP */
+#loc-map{height:175px;border-radius:var(--rs);overflow:hidden;border:1.5px solid var(--bd);margin-top:8px;display:none;}
+.locrow{display:flex;gap:8px;align-items:stretch;}
+.locrow .fi{flex:1;}
+.gpsbtn{background:var(--acl);border:1.5px solid var(--ac2);color:var(--ac2);border-radius:var(--rs);padding:0 14px;font-size:20px;cursor:pointer;flex-shrink:0;display:flex;align-items:center;}
+/* BUTTONS */
+.btsave{flex:1;background:var(--acc);color:#fff;border:none;border-radius:var(--rs);padding:16px;font-size:16px;font-weight:700;font-family:inherit;cursor:pointer;}
+.btsave:active{background:#001f45;}
+.btcancel{background:var(--s2);border:1.5px solid var(--bd);color:var(--t2);border-radius:var(--rs);padding:16px 20px;font-size:15px;font-weight:600;font-family:inherit;cursor:pointer;}
+/* CONFIG MODAL */
+.movo{position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:300;display:none;align-items:center;justify-content:center;padding:20px;}
+.movo.open{display:flex;}
+.mbox{background:var(--wh);border-radius:var(--r);width:100%;max-width:440px;max-height:85vh;overflow-y:auto;box-shadow:var(--shl);}
+.mhdr{padding:18px 20px 14px;border-bottom:1px solid var(--bd);display:flex;align-items:center;justify-content:space-between;}
+.mtitle{font-size:16px;font-weight:700;}
+.mbody{padding:20px;} .mftr{padding:12px 20px 20px;display:flex;gap:10px;}
+.mtsave{flex:1;background:var(--acc);color:#fff;border:none;border-radius:8px;padding:14px;font-size:15px;font-weight:700;font-family:inherit;cursor:pointer;}
+.mtcancel{background:var(--s2);border:1px solid var(--bd);color:var(--t2);border-radius:8px;padding:14px 18px;font-size:14px;font-family:inherit;cursor:pointer;}
+/* TOAST */
+.toast{position:fixed;bottom:90px;left:50%;transform:translateX(-50%) translateY(20px);background:#1e293b;color:#fff;padding:12px 20px;border-radius:30px;font-size:14px;font-weight:500;z-index:999;opacity:0;transition:all .25s;white-space:nowrap;max-width:90vw;box-shadow:0 4px 20px rgba(0,0,0,.25);}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+.toast.success{background:#15803d;} .toast.error{background:#dc2626;}
+details summary{cursor:pointer;color:var(--ac2);font-size:13px;font-weight:600;padding:8px 0;}
+pre{background:#f8fafc;border:1px solid var(--bd);border-radius:8px;padding:12px;font-size:10px;overflow-x:auto;color:var(--t2);line-height:1.5;white-space:pre-wrap;margin-top:8px;}
+.leaflet-container{z-index:1;}
+</style>
+</head>
+<body>
+<div class="app">
+<div class="hdr">
+  <div class="hdr-l">
+    <div class="hlogo">H</div>
+    <div class="htitle"><div class="h1">Hyundai Stargazer Smart 7</div><div class="h2">5 ขษ 6548 · บันทึกการใช้รถ</div></div>
+  </div>
+  <button class="cfgbtn" onclick="openConfig()">⚙</button>
+</div>
+<div class="pages">
+  <!-- PAGE TX -->
+  <div class="page active" id="page-tx">
+    <div class="pc">
+      <div class="srow">
+        <div class="scard"><div class="slbl">ค่าใช้จ่ายรวม</div><div class="sval" id="ss">฿0</div><div class="ssub">ทั้งหมด</div></div>
+        <div class="scard"><div class="slbl">ไมล์ล่าสุด</div><div class="sval" id="sk">—</div><div class="ssub">กิโลเมตร</div></div>
+        <div class="scard"><div class="slbl">รายการทั้งหมด</div><div class="sval" id="st">0</div><div class="ssub">transactions</div></div>
+        <div class="scard"><div class="slbl">เติมน้ำมัน</div><div class="sval" id="sf">0</div><div class="ssub">ครั้ง</div></div>
+      </div>
+      <div class="chips">
+        <button class="chip active" onclick="flt(this,'all')">ทั้งหมด</button>
+        <button class="chip" onclick="flt(this,'fuel')">⛽ เติมน้ำมัน</button>
+        <button class="chip" onclick="flt(this,'oil')">🔧 น้ำมันเครื่อง</button>
+        <button class="chip" onclick="flt(this,'repair')">🔨 ซ่อมบำรุง</button>
+        <button class="chip" onclick="flt(this,'wash')">🚿 ล้างรถ</button>
+        <button class="chip" onclick="flt(this,'insure')">🛡 ประกัน</button>
+        <button class="chip" onclick="flt(this,'payment')">💳 ค่างวด</button>
+      </div>
+      <div id="txlist"></div>
+    </div>
+  </div>
+  <!-- PAGE CAR -->
+  <div class="page" id="page-car">
+    <div class="pc">
+      <div class="sc">
+        <div class="sch"><div class="sci">🚗</div><div><div class="sct">Hyundai Stargazer Smart 7</div><div class="scs">ข้อมูลรถยนต์ (คงที่)</div></div></div>
+        <div class="ir"><span class="il">รุ่น / แบบ</span><span class="iv">Stargazer Smart 7<br><span style="font-size:11px;color:var(--t2);font-weight:400">kUN35R-URMSHT</span></span></div>
+        <div class="ir"><span class="il">ปีรถ</span><span class="iv">2023</span></div>
+        <div class="ir"><span class="il">สี</span><span class="iv">ดำ (Phantom Black)</span></div>
+        <div class="ir"><span class="il">ทะเบียน</span><span class="iv">5 ขษ 6548<br><span style="font-size:11px;color:var(--t2);font-weight:400">กรุงเทพมหานคร</span></span></div>
+        <div class="ir"><span class="il">วันจดทะเบียน</span><span class="iv">21 ต.ค. 2567</span></div>
+        <div class="ir"><span class="il">เลขตัวถัง (VIN)</span><span class="iv"><span class="vbdg">MF3NC81DTRJO33107</span><br><span style="font-size:10px;color:var(--t3);font-weight:400">ที่นั่งด้านขวา</span></span></div>
+        <div class="ir"><span class="il">เลขเครื่องยนต์</span><span class="iv"><span class="vbdg">G4FLPQ248327</span><br><span style="font-size:10px;color:var(--t3);font-weight:400">ซ้ายเครื่องยนต์</span></span></div>
+        <div class="ir"><span class="il">เชื้อเพลิง</span><span class="iv">เบนซิน 4 สูบ</span></div>
+        <div class="ir"><span class="il">ขนาดเครื่อง</span><span class="iv">1,497 cc</span></div>
+        <div class="ir"><span class="il">กำลังสูงสุด</span><span class="iv">115 แรงม้า</span></div>
+        <div class="ir"><span class="il">น้ำหนัก GVW</span><span class="iv">2,750 กก.</span></div>
+        <div class="ir"><span class="il">ผู้จำหน่าย</span><span class="iv">ศูนย์ฮุนได<br><span style="font-size:11px;color:var(--t2);font-weight:400">รามอินทรา กม.4</span></span></div>
+      </div>
+    </div>
+  </div>
+  <!-- PAGE INS -->
+  <div class="page" id="page-ins">
+    <div class="pc">
+      <div class="sc">
+        <div class="sch"><div class="sci">🛡</div><div><div class="sct">กรมธรรม์ประกันภัย</div><div class="scs">ข้อมูลประกันรถยนต์</div></div></div>
+        <div class="isb exp" id="isb">
+          <div class="isi">⚠️</div>
+          <div><div class="iss" id="is-s">หมดอายุแล้ว</div><div class="isd" id="is-d">กรุณาต่ออายุ</div></div>
+        </div>
+        <div class="ir"><span class="il">ปีกรมธรรม์</span><span class="iv">2567</span></div>
+        <div class="ir"><span class="il">เลขกรมธรรม์</span><span class="iv" style="font-size:12px">18147-67129/กธ/058456-12</span></div>
+        <div class="ir"><span class="il">วันสิ้นสุด</span><span class="iv">20 เม.ย. 2568</span></div>
+      </div>
+      <div class="sc" style="padding:16px"><div style="font-size:13px;color:var(--t2);line-height:1.8">💡 <strong style="color:var(--tx)">หมายเหตุ:</strong> กรมธรรม์หมดอายุแล้ว — กรุณาต่อประกันและอัพเดทข้อมูล</div></div>
+    </div>
+  </div>
+</div>
+<div class="bnav">
+  <button class="ni active" id="nav-tx" onclick="showPage('tx')"><div class="ico">📋</div><div class="lbl">ประวัติ</div><span class="nbdg" id="nbdg">0</span></button>
+  <button class="ni" id="nav-car" onclick="showPage('car')"><div class="ico">🚗</div><div class="lbl">ข้อมูลรถ</div></button>
+  <button class="ni" id="nav-ins" onclick="showPage('ins')"><div class="ico">🛡</div><div class="lbl">กรมธรรม์</div></button>
+</div>
+</div>
+
+<button class="fab" id="fab" onclick="openAdd()">+</button>
+
+<!-- BOTTOM SHEET -->
+<div class="bso" id="bso">
+  <div class="bs">
+    <div class="bshdl"></div>
+    <div class="bshdr"><div class="bstitle" id="bst">+ เพิ่มรายการ</div><button class="bsclose" onclick="closeBS()">✕</button></div>
+    <div class="bsbody">
+      <div class="fg"><label>หมวดหมู่ <span class="req">*</span></label>
+        <select class="fi" id="tx-cat" onchange="onCat()">
+          <option value="">— เลือกหมวดหมู่ —</option>
+          <option value="fuel">⛽  เติมน้ำมัน</option>
+          <option value="oil">🔧  เปลี่ยนน้ำมันเครื่อง</option>
+          <option value="repair">🔨  เปลี่ยน / ซ่อม อื่นๆ</option>
+          <option value="wash">🚿  ล้างรถ</option>
+          <option value="insure">🛡  ประกัน</option>
+          <option value="payment">💳  จ่ายค่างวดรถ</option>
+        </select></div>
+      <div class="fg"><label>วันที่ <span class="req">*</span></label><input type="date" class="fi" id="tx-date"></div>
+      <div class="fg"><label>เลขไมล์รถ (Km) <span class="req">*</span></label><input type="number" class="fi" id="tx-km" placeholder="เช่น 32775" inputmode="numeric"></div>
+      <div id="fg-fuel" style="display:none">
+        <div class="fg"><label>ชนิดน้ำมัน</label>
+          <div class="ftgl"><button class="fb active" id="fb95" onclick="setFuel('Sohol95')">Sohol 95</button><button class="fb" id="fb91" onclick="setFuel('Sohol91')">Sohol 91</button></div></div>
+        <div class="fg"><label>จำนวนลิตร</label><input type="number" class="fi" id="tx-lit" placeholder="0.000" step="0.001" inputmode="decimal"></div>
+        <div class="fg"><label>ราคาน้ำมัน ต่อ ลิตร (บาท)</label>
+          <input type="number" class="fi" id="tx-fpr" placeholder="0.000" step="0.001" inputmode="decimal">
+          <div style="font-size:11px;color:var(--t2);margin-top:5px" id="lph"></div></div>
+      </div>
+      <div class="fg"><label>จำนวนเงินที่จ่าย (บาท)</label><input type="number" class="fi" id="tx-amt" placeholder="฿ 0.00" step="0.01" inputmode="decimal"></div>
+      <div class="fg"><label>หมายเหตุ</label><textarea class="fi" id="tx-note" placeholder="รายละเอียดเพิ่มเติม..."></textarea></div>
+      <div class="fg"><label>สถานที่</label>
+        <div class="locrow"><input type="text" class="fi" id="tx-place" placeholder="กด 📍 เพื่อรับตำแหน่งอัตโนมัติ"><button class="gpsbtn" onclick="getGPS()">📍</button></div>
+        <input type="hidden" id="tx-lat"><input type="hidden" id="tx-lng">
+        <div id="loc-map"></div></div>
+    </div>
+    <div class="bsftr"><button class="btcancel" onclick="closeBS()">ยกเลิก</button><button class="btsave" onclick="saveTx()">💾 บันทึก</button></div>
+  </div>
+</div>
+
+<!-- CONFIG MODAL -->
+<div class="movo" id="cfg-m">
+  <div class="mbox">
+    <div class="mhdr"><div class="mtitle">⚙ ตั้งค่า Google Sheets</div><button class="bsclose" onclick="closeConfig()">✕</button></div>
+    <div class="mbody">
+      <div style="background:#f0f9ff;border:1px solid #bae6fd;border-radius:8px;padding:12px;margin-bottom:14px;font-size:12px;color:#0369a1;line-height:1.8">
+        <strong>วิธีตั้งค่า:</strong><br>
+        1. <a href="https://script.google.com" target="_blank" style="color:#0ea5e9">script.google.com</a> → New Project<br>
+        2. วาง Apps Script Code → Deploy as Web App<br>
+        3. Execute as: Me / Access: Anyone → Copy Web App URL
+      </div>
+      <div class="fg"><label>Web App URL</label><input type="url" class="fi" id="cfg-url" placeholder="https://script.google.com/macros/s/.../exec" style="font-size:13px"></div>
+      <details><summary>📄 Apps Script Code (คลิกดู)</summary><pre id="script-pre"></pre></details>
+    </div>
+    <div class="mftr"><button class="mtcancel" onclick="closeConfig()">ยกเลิก</button><button class="mtsave" onclick="saveConfig()">✓ บันทึก</button></div>
+  </div>
+</div>
+<div class="toast" id="toast"></div>
+
+<script>
+var TXS=JSON.parse(localStorage.getItem('hyu_tx')||'[]');
+var CFG=JSON.parse(localStorage.getItem('hyu_cfg')||'{}');
+var editId=null,curF='all',selFuel='Sohol95',LM=null,LMk=null;
+var MO=['ม.ค.','ก.พ.','มี.ค.','เม.ย.','พ.ค.','มิ.ย.','ก.ค.','ส.ค.','ก.ย.','ต.ค.','พ.ย.','ธ.ค.'];
+var CAT={fuel:{l:'เติมน้ำมัน',i:'⛽',c:'cf'},oil:{l:'น้ำมันเครื่อง',i:'🔧',c:'co'},repair:{l:'เปลี่ยน/ซ่อม',i:'🔨',c:'cr'},wash:{l:'ล้างรถ',i:'🚿',c:'cw'},insure:{l:'ประกัน',i:'🛡',c:'ci'},payment:{l:'ค่างวดรถ',i:'💳',c:'cp'}};
+var GC="const SHEET_ID = 'YOUR_SPREADSHEET_ID';\nfunction doPost(e) {\n  try {\n    const d = JSON.parse(e.postData.contents);\n    const ss = SpreadsheetApp.openById(SHEET_ID);\n    let sh;\n    if (d.sheet === 'transactions') {\n      sh = ss.getSheetByName('Transactions') || ss.insertSheet('Transactions');\n      if (sh.getLastRow()===0) sh.appendRow(['ID','Category','Date','Km','FuelType','Liters','FuelPrice','Amount','Place','Lat','Lng','Note','CreatedAt']);\n      const t=d.payload;\n      sh.appendRow([t.id,t.cat,t.date,t.km,t.fuelType||'',t.liters||'',t.fuelPrice||'',t.amount||'',t.place||'',t.lat||'',t.lng||'',t.note||'',t.createdAt]);\n    } else if (d.sheet==='delete_tx') {\n      sh = ss.getSheetByName('Transactions');\n      if(sh){const rows=sh.getDataRange().getValues();for(let i=rows.length-1;i>=1;i--){if(String(rows[i][0])===String(d.id)){sh.deleteRow(i+1);break;}}}\n    }\n    return ContentService.createTextOutput(JSON.stringify({ok:true})).setMimeType(ContentService.MimeType.JSON);\n  } catch(err){return ContentService.createTextOutput(JSON.stringify({ok:false,error:err.message})).setMimeType(ContentService.MimeType.JSON);}\n}";
+
+document.addEventListener('DOMContentLoaded',function(){
+  document.getElementById('script-pre').textContent=GC;
+  if(CFG.url) document.getElementById('cfg-url').value=CFG.url;
+  setToday(); renderAll(); updIns(); autoLoc();
+});
+
+function setToday(){var d=new Date(),y=d.getFullYear(),m=String(d.getMonth()+1).padStart(2,'0'),dd=String(d.getDate()).padStart(2,'0');document.getElementById('tx-date').value=y+'-'+m+'-'+dd;}
+function showPage(p){['tx','car','ins'].forEach(function(id){document.getElementById('page-'+id).classList.toggle('active',id===p);document.getElementById('nav-'+id).classList.toggle('active',id===p);});document.getElementById('fab').style.display=p==='tx'?'':'none';}
+function updIns(){var end=new Date('2025-04-20'),now=new Date(),diff=Math.ceil((end-now)/864e5);var b=document.getElementById('isb'),s=document.getElementById('is-s'),d=document.getElementById('is-d');if(diff<0){b.className='isb exp';s.textContent='หมดอายุแล้ว '+Math.abs(diff)+' วัน';d.textContent='กรุณาต่ออายุกรมธรรม์โดยด่วน';}else if(diff<=30){b.className='isb exp';s.textContent='ใกล้หมดอายุ — เหลือ '+diff+' วัน';d.textContent='ต่อก่อน 20 เม.ย. 2568';}else{b.className='isb ok';s.textContent='ยังมีอายุ — เหลือ '+diff+' วัน';d.textContent='สิ้นสุด 20 เม.ย. 2568';}}
+function renderAll(){renderTx();updStats();document.getElementById('nbdg').textContent=TXS.length;}
+function getFlt(){return curF==='all'?TXS.slice():TXS.filter(function(t){return t.cat===curF;});}
+function renderTx(){
+  var el=document.getElementById('txlist'),filt=getFlt();
+  if(!filt.length){el.innerHTML='<div class="etx"><div class="ei">📭</div><p>ยังไม่มีรายการ<br>กด + เพื่อเพิ่มรายการ</p></div>';return;}
+  var grp={};filt.forEach(function(t){if(!grp[t.date])grp[t.date]=[];grp[t.date].push(t);});
+  var dates=Object.keys(grp).sort(function(a,b){return b.localeCompare(a);});
+  var h='';
+  dates.forEach(function(dt){
+    var dtot=grp[dt].reduce(function(s,t){return s+(parseFloat(t.amount)||0);},0);
+    h+='<div class="tgh"><span>'+fmtD(dt)+'</span>'+(dtot?'<span style="color:var(--acc);font-weight:700">฿'+dtot.toLocaleString('th-TH',{minimumFractionDigits:2,maximumFractionDigits:2})+'</span>':'')+'</div>';
+    grp[dt].forEach(function(tx){
+      var cat=CAT[tx.cat]||{l:tx.cat,i:'📌',c:''};
+      var ri=TXS.findIndex(function(t){return t.id===tx.id;});
+      var mu=tx.lat&&tx.lng?'https://maps.google.com/?q='+tx.lat+','+tx.lng:null;
+      var det='';
+      if(tx.cat==='fuel'){det=(tx.fuelType||'');if(tx.liters)det+=' '+tx.liters+'ล.';if(tx.fuelPrice)det+=' @฿'+tx.fuelPrice;}
+      else if(tx.note)det=tx.note.substring(0,28);
+      else if(tx.place)det=tx.place.substring(0,28);
+      h+='<div class="ti"><div class="tih"><div class="til"><div class="tci '+cat.c+'">'+cat.i+'</div><div><div class="tcl">'+cat.l+'</div><div class="tdl">'+fmtD(tx.date)+'</div></div></div>'+(tx.amount?'<div class="tam">฿'+Number(tx.amount).toLocaleString('th-TH',{minimumFractionDigits:2,maximumFractionDigits:2})+'</div>':'')+'</div><div class="tif"><span class="tkm">🔢 '+Number(tx.km).toLocaleString()+' km</span>'+(det?'<span class="tdt">'+det+'</span>':'')+'<div class="tacts">'+(mu?'<a class="maplnk" href="'+mu+'" target="_blank">📍</a>':'')+'<button class="tab" onclick="editTx('+ri+')">✏️</button><button class="tab del" onclick="delTx('+ri+')">🗑</button></div></div></div>';
+    });
+  });
+  el.innerHTML=h;
+}
+function updStats(){var s=TXS.reduce(function(a,t){return a+(parseFloat(t.amount)||0);},0),kms=TXS.map(function(t){return t.km||0;}).filter(function(k){return k>0;}),mk=kms.length?Math.max.apply(null,kms):0,fc=TXS.filter(function(t){return t.cat==='fuel';}).length;document.getElementById('st').textContent=TXS.length;document.getElementById('ss').textContent='฿'+s.toLocaleString('th-TH',{minimumFractionDigits:0,maximumFractionDigits:0});document.getElementById('sk').textContent=mk?mk.toLocaleString():'—';document.getElementById('sf').textContent=fc;}
+function flt(btn,cat){document.querySelectorAll('.chip').forEach(function(b){b.classList.remove('active');});btn.classList.add('active');curF=cat;renderTx();}
+function openAdd(){
+  editId=null;document.getElementById('bst').textContent='+ เพิ่มรายการ';
+  clearF();setToday();
+  var llat=localStorage.getItem('hyu_llat'),llng=localStorage.getItem('hyu_llng'),lpl=localStorage.getItem('hyu_lpl');
+  if(llat&&llng){document.getElementById('tx-lat').value=llat;document.getElementById('tx-lng').value=llng;document.getElementById('tx-place').value=lpl||llat+', '+llng;showMap(parseFloat(llat),parseFloat(llng));}
+  document.getElementById('bso').classList.add('open');
+}
+function closeBS(){document.getElementById('bso').classList.remove('open');if(LM){LM.remove();LM=null;LMk=null;}document.getElementById('loc-map').style.display='none';}
+function clearF(){['tx-cat','tx-km','tx-lit','tx-fpr','tx-amt','tx-note','tx-place','tx-lat','tx-lng'].forEach(function(id){var el=document.getElementById(id);if(el)el.value='';});document.getElementById('fg-fuel').style.display='none';selFuel='Sohol95';setFuel('Sohol95');}
+function onCat(){var c=document.getElementById('tx-cat').value;document.getElementById('fg-fuel').style.display=c==='fuel'?'':'none';if(c==='fuel')fillFP();}
+function setFuel(t){selFuel=t;document.getElementById('fb95').classList.toggle('active',t==='Sohol95');document.getElementById('fb91').classList.toggle('active',t==='Sohol91');}
+function fillFP(){var ft=TXS.filter(function(t){return t.cat==='fuel'&&t.fuelPrice;});var h=document.getElementById('lph');if(ft.length){var l=ft[0];h.textContent='💡 ครั้งก่อน: '+(l.fuelType||'')+' ฿'+l.fuelPrice+'/ล.';if(!document.getElementById('tx-fpr').value)document.getElementById('tx-fpr').value=l.fuelPrice;}else h.textContent='';}
+function saveTx(){
+  var cat=document.getElementById('tx-cat').value,date=document.getElementById('tx-date').value,km=document.getElementById('tx-km').value;
+  if(!cat){showToast('กรุณาเลือกหมวดหมู่','error');return;}
+  if(!date){showToast('กรุณาระบุวันที่','error');return;}
+  if(!km||parseInt(km)<=0){showToast('กรุณาระบุเลขไมล์','error');return;}
+  var tx={id:editId!==null?editId:Date.now(),cat:cat,date:date,km:parseInt(km),fuelType:cat==='fuel'?selFuel:'',liters:cat==='fuel'?document.getElementById('tx-lit').value:'',fuelPrice:cat==='fuel'?document.getElementById('tx-fpr').value:'',amount:document.getElementById('tx-amt').value,note:document.getElementById('tx-note').value,place:document.getElementById('tx-place').value,lat:document.getElementById('tx-lat').value,lng:document.getElementById('tx-lng').value,createdAt:new Date().toISOString()};
+  if(editId!==null){var i=TXS.findIndex(function(t){return t.id===editId;});if(i>=0){tx.createdAt=TXS[i].createdAt;TXS[i]=tx;}showToast('แก้ไขรายการแล้ว ✓','success');}
+  else{TXS.unshift(tx);showToast('บันทึกรายการแล้ว ✓','success');}
+  localStorage.setItem('hyu_tx',JSON.stringify(TXS));syncGS('transactions',tx);closeBS();renderAll();
+}
+function editTx(idx){
+  var tx=TXS[idx];editId=tx.id;document.getElementById('bst').textContent='✏ แก้ไขรายการ';
+  document.getElementById('tx-cat').value=tx.cat;document.getElementById('tx-date').value=tx.date;document.getElementById('tx-km').value=tx.km;
+  selFuel=tx.fuelType||'Sohol95';setFuel(selFuel);
+  document.getElementById('tx-lit').value=tx.liters||'';document.getElementById('tx-fpr').value=tx.fuelPrice||'';document.getElementById('tx-amt').value=tx.amount||'';document.getElementById('tx-note').value=tx.note||'';document.getElementById('tx-place').value=tx.place||'';document.getElementById('tx-lat').value=tx.lat||'';document.getElementById('tx-lng').value=tx.lng||'';
+  document.getElementById('fg-fuel').style.display=tx.cat==='fuel'?'':'none';
+  if(tx.cat==='fuel')fillFP();
+  if(tx.lat&&tx.lng)showMap(parseFloat(tx.lat),parseFloat(tx.lng));
+  document.getElementById('bso').classList.add('open');
+}
+function delTx(idx){if(!confirm('ลบรายการนี้?'))return;var id=TXS[idx].id;TXS.splice(idx,1);localStorage.setItem('hyu_tx',JSON.stringify(TXS));delGS(id);renderAll();showToast('ลบรายการแล้ว','success');}
+function autoLoc(){if(!navigator.geolocation)return;navigator.geolocation.getCurrentPosition(function(p){var lat=p.coords.latitude,lng=p.coords.longitude;localStorage.setItem('hyu_llat',lat.toFixed(6));localStorage.setItem('hyu_llng',lng.toFixed(6));revG(lat,lng,function(n){localStorage.setItem('hyu_lpl',n);});},function(){},{timeout:8000,maximumAge:120000});}
+function getGPS(){if(!navigator.geolocation){showToast('ไม่รองรับ GPS','error');return;}showToast('กำลังรับตำแหน่ง...','success');navigator.geolocation.getCurrentPosition(function(p){var lat=p.coords.latitude,lng=p.coords.longitude;document.getElementById('tx-lat').value=lat.toFixed(6);document.getElementById('tx-lng').value=lng.toFixed(6);localStorage.setItem('hyu_llat',lat.toFixed(6));localStorage.setItem('hyu_llng',lng.toFixed(6));showMap(lat,lng);revG(lat,lng,function(n){document.getElementById('tx-place').value=n;localStorage.setItem('hyu_lpl',n);});showToast('รับตำแหน่งแล้ว 📍','success');},function(e){showToast('GPS: '+e.message,'error');},{enableHighAccuracy:true,timeout:10000});}
+function revG(lat,lng,cb){fetch('https://nominatim.openstreetmap.org/reverse?lat='+lat+'&lon='+lng+'&format=json&accept-language=th').then(function(r){return r.json();}).then(function(d){var a=d.address;var parts=[a.amenity||a.shop||a.tourism||a.leisure,a.road,a.suburb||a.quarter||a.neighbourhood,a.city||a.town||a.village].filter(Boolean);cb(parts.slice(0,3).join(', ')||lat.toFixed(5)+', '+lng.toFixed(5));}).catch(function(){cb(lat.toFixed(5)+', '+lng.toFixed(5));});}
+function showMap(lat,lng){var el=document.getElementById('loc-map');el.style.display='block';setTimeout(function(){if(LM){LM.setView([lat,lng],16);if(LMk)LMk.setLatLng([lat,lng]);else LMk=L.marker([lat,lng],{draggable:true}).addTo(LM);LM.invalidateSize();}else{LM=L.map('loc-map',{zoomControl:true,attributionControl:false}).setView([lat,lng],16);L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:19}).addTo(LM);LMk=L.marker([lat,lng],{draggable:true}).addTo(LM);LMk.on('dragend',function(e){var p=e.target.getLatLng();document.getElementById('tx-lat').value=p.lat.toFixed(6);document.getElementById('tx-lng').value=p.lng.toFixed(6);revG(p.lat,p.lng,function(n){document.getElementById('tx-place').value=n;});});LM.invalidateSize();}},120);}
+async function syncGS(s,p){if(!CFG.url)return;try{await fetch(CFG.url,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},body:JSON.stringify({sheet:s,payload:p})});}catch(e){}}
+async function delGS(id){if(!CFG.url)return;try{await fetch(CFG.url,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},body:JSON.stringify({sheet:'delete_tx',id:id})});}catch(e){}}
+function openConfig(){document.getElementById('cfg-url').value=CFG.url||'';document.getElementById('cfg-m').classList.add('open');}
+function closeConfig(){document.getElementById('cfg-m').classList.remove('open');}
+function saveConfig(){CFG.url=document.getElementById('cfg-url').value.trim();localStorage.setItem('hyu_cfg',JSON.stringify(CFG));closeConfig();showToast('บันทึกการตั้งค่าแล้ว ✓','success');}
+function fmtD(d){if(!d)return'—';var p=d.split('-');return parseInt(p[2])+' '+MO[parseInt(p[1])-1]+' '+(parseInt(p[0])+543);}
+function showToast(msg,type){var t=document.getElementById('toast');t.textContent=msg;t.className='toast '+(type||'success')+' show';clearTimeout(t._t);t._t=setTimeout(function(){t.classList.remove('show');},2800);}
+document.getElementById('bso').addEventListener('click',function(e){if(e.target===document.getElementById('bso'))closeBS();});
+document.getElementById('cfg-m').addEventListener('click',function(e){if(e.target===document.getElementById('cfg-m'))closeConfig();});
+</script>
+</body>
+</html>
