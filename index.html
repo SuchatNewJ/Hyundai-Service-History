@@ -13,48 +13,75 @@
 html,body{height:100%;}
 body{font-family:'Noto Sans Thai',sans-serif;background:var(--bg);color:var(--tx);font-size:15px;overscroll-behavior:none;}
 .app{display:flex;flex-direction:column;height:100vh;max-width:480px;margin:0 auto;background:var(--bg);}
-/* HEADER */
 .hdr{background:var(--acc);padding:14px 16px 12px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0;box-shadow:0 2px 8px rgba(0,44,95,.3);}
 .hdr-l{display:flex;align-items:center;gap:10px;}
 .hlogo{width:36px;height:36px;background:#fff;border-radius:8px;display:flex;align-items:center;justify-content:center;font-family:'Rajdhani',sans-serif;font-weight:700;font-size:20px;color:var(--acc);flex-shrink:0;}
-.htitle .h1{color:#fff;font-size:14px;font-weight:700;} .htitle .h2{color:rgba(255,255,255,.65);font-size:11px;margin-top:1px;}
+.htitle .h1{color:#fff;font-size:14px;font-weight:700;}.htitle .h2{color:rgba(255,255,255,.65);font-size:11px;margin-top:1px;}
 .cfgbtn{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.2);color:#fff;width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:16px;cursor:pointer;flex-shrink:0;}
-/* BOTTOM NAV */
 .bnav{display:flex;background:var(--wh);border-top:1px solid var(--bd);flex-shrink:0;box-shadow:0 -2px 12px rgba(0,0,0,.07);}
 .ni{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:10px 4px 8px;cursor:pointer;border:none;background:none;font-family:inherit;color:var(--t3);position:relative;}
 .ni.active{color:var(--acc);}
-.ni .ico{font-size:22px;line-height:1;margin-bottom:3px;} .ni .lbl{font-size:10px;font-weight:600;}
+.ni .ico{font-size:22px;line-height:1;margin-bottom:3px;}.ni .lbl{font-size:10px;font-weight:600;}
 .ni.active::after{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:32px;height:3px;background:var(--acc);border-radius:0 0 4px 4px;}
-.nbdg{position:absolute;top:6px;right:calc(50% - 20px);background:var(--ac2);color:#fff;font-size:9px;font-weight:700;min-width:16px;height:16px;border-radius:8px;display:flex;align-items:center;justify-content:center;padding:0 4px;}
-/* PAGES */
 .pages{flex:1;overflow:hidden;position:relative;}
 .page{position:absolute;inset:0;overflow-y:auto;display:none;-webkit-overflow-scrolling:touch;}
 .page.active{display:block;}
 .pc{padding:16px;}
-/* CARDS */
 .sc{background:var(--wh);border-radius:var(--r);box-shadow:var(--sh);margin-bottom:14px;overflow:hidden;}
 .sch{padding:14px 16px 12px;border-bottom:1px solid var(--bd);display:flex;align-items:center;gap:10px;}
 .sci{width:34px;height:34px;border-radius:8px;background:var(--acl);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;}
-.sct{font-size:14px;font-weight:700;color:var(--acc);} .scs{font-size:11px;color:var(--t3);margin-top:1px;}
-/* INFO ROWS */
+.sct{font-size:14px;font-weight:700;color:var(--acc);}.scs{font-size:11px;color:var(--t3);margin-top:1px;}
 .ir{display:flex;align-items:baseline;justify-content:space-between;padding:10px 16px;border-bottom:1px solid var(--bd);}
 .ir:last-child{border-bottom:none;}
-.il{font-size:12px;color:var(--t2);flex-shrink:0;margin-right:12px;min-width:110px;}
+.il{font-size:12px;color:var(--t2);flex-shrink:0;margin-right:12px;min-width:100px;}
 .iv{font-size:13px;font-weight:600;color:var(--tx);text-align:right;word-break:break-all;}
-.vbdg{background:#f1f5f9;border-radius:5px;padding:3px 7px;font-family:monospace;font-size:11px;display:inline-block;}
-/* INS STATUS */
-.isb{margin:12px 16px;padding:10px 14px;border-radius:var(--rs);display:flex;align-items:center;gap:10px;}
-.isb.exp{background:#fef2f2;border:1px solid #fecaca;} .isb.ok{background:var(--grl);border:1px solid #86efac;}
-.isb .isi{font-size:22px;}
-.isb .iss{font-size:13px;font-weight:700;} .isb.exp .iss{color:var(--red);} .isb.ok .iss{color:var(--grn);}
-.isb .isd{font-size:11px;color:var(--t2);margin-top:2px;}
-/* STATS */
+/* Insurance */
+.ins-item{border-bottom:1px solid var(--bd);}
+.ins-item:last-child{border-bottom:none;}
+.ins-row{padding:12px 16px;display:flex;align-items:flex-start;gap:10px;}
+.ins-yr{font-size:12px;font-weight:700;color:var(--acc);min-width:40px;padding-top:2px;}
+.ins-detail{flex:1;}
+.ins-polno{font-size:12px;font-weight:600;color:var(--tx);word-break:break-all;font-family:monospace;}
+.ins-dates{font-size:11px;color:var(--t2);margin-top:2px;}
+.ibdg{font-size:11px;font-weight:700;padding:3px 8px;border-radius:20px;white-space:nowrap;display:inline-block;margin-top:4px;}
+.ib-ok{background:var(--grl);color:var(--grn);}
+.ib-exp{background:#fef2f2;color:var(--red);}
+.ib-warn{background:#fef9c3;color:#854d0e;}
+.ins-add-btn{width:100%;background:none;border:none;border-top:1px solid var(--bd);padding:13px;color:var(--ac2);font-size:14px;font-weight:600;cursor:pointer;font-family:inherit;display:flex;align-items:center;justify-content:center;gap:6px;}
+.ins-form-wrap{border-top:1px solid var(--bd);background:var(--s2);display:none;padding:16px;}
+.ins-form-wrap.open{display:block;}
+.ifg{margin-bottom:12px;}
+.ifg label{font-size:11px;font-weight:700;color:var(--t2);display:block;margin-bottom:5px;text-transform:uppercase;}
+.ifi{width:100%;border:1.5px solid var(--bd);background:var(--wh);border-radius:8px;padding:11px 12px;font-size:15px;font-family:inherit;color:var(--tx);outline:none;-webkit-appearance:none;}
+.ifi:focus{border-color:var(--ac2);}
+.ins-btns{display:flex;gap:8px;margin-top:4px;}
+.ins-save{flex:1;background:var(--acc);color:#fff;border:none;border-radius:8px;padding:13px;font-size:14px;font-weight:700;cursor:pointer;font-family:inherit;}
+.ins-cancel{background:var(--s2);border:1px solid var(--bd2);color:var(--t2);border-radius:8px;padding:13px 16px;font-size:14px;cursor:pointer;font-family:inherit;}
+/* Stats */
 .srow{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px;}
 .scard{background:var(--wh);border-radius:var(--r);box-shadow:var(--sh);padding:14px 16px;}
 .slbl{font-size:10px;font-weight:600;color:var(--t2);letter-spacing:.8px;text-transform:uppercase;margin-bottom:4px;}
 .sval{font-family:'Rajdhani',sans-serif;font-size:24px;font-weight:700;color:var(--acc);line-height:1;}
 .ssub{font-size:11px;color:var(--t3);margin-top:3px;}
-/* CHIPS */
+/* Summary */
+.stabs{display:flex;background:var(--wh);border-radius:var(--r);overflow:hidden;box-shadow:var(--sh);margin-bottom:14px;}
+.stab{flex:1;padding:12px 6px;text-align:center;font-size:13px;font-weight:600;color:var(--t2);cursor:pointer;border:none;background:none;font-family:inherit;border-bottom:3px solid transparent;}
+.stab.active{color:var(--acc);border-bottom-color:var(--acc);}
+.sum-panel{display:none;}.sum-panel.active{display:block;}
+.sum-table{background:var(--wh);border-radius:var(--r);box-shadow:var(--sh);overflow:hidden;margin-bottom:12px;}
+.sum-row{display:flex;align-items:center;justify-content:space-between;padding:11px 16px;border-bottom:1px solid var(--bd);}
+.sum-row:last-child{border-bottom:none;}
+.sum-hdr{background:var(--acc);}
+.sum-hdr .sum-label,.sum-hdr .sum-amt{color:#fff;}
+.sum-label{font-size:13px;font-weight:600;color:var(--tx);}
+.sum-sub2{font-size:11px;color:var(--t3);margin-top:1px;font-weight:400;}
+.sum-amt{font-family:'Rajdhani',sans-serif;font-size:16px;font-weight:700;color:var(--acc);}
+.sum-total-row{background:var(--acl);}
+.yr-mo-row{display:flex;align-items:center;justify-content:space-between;padding:9px 16px 9px 34px;border-bottom:1px solid var(--bd);background:var(--s2);}
+.yr-mo-row:last-child{border-bottom:none;}
+.yr-cat-row{display:flex;align-items:center;justify-content:space-between;padding:8px 16px 8px 52px;border-bottom:1px dashed var(--bd);background:#fafbfc;}
+.yr-cat-row:last-child{border-bottom:none;}
+/* Chips */
 .chips{display:flex;gap:6px;overflow-x:auto;padding-bottom:2px;margin-bottom:12px;scrollbar-width:none;}
 .chips::-webkit-scrollbar{display:none;}
 .chip{padding:6px 14px;border-radius:20px;font-size:12px;font-weight:600;border:1.5px solid var(--bd);background:var(--wh);color:var(--t2);cursor:pointer;white-space:nowrap;font-family:inherit;flex-shrink:0;}
@@ -65,12 +92,12 @@ body{font-family:'Noto Sans Thai',sans-serif;background:var(--bg);color:var(--tx
 .tih{padding:12px 14px 10px;display:flex;align-items:flex-start;justify-content:space-between;gap:10px;}
 .til{display:flex;align-items:center;gap:10px;flex:1;min-width:0;}
 .tci{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;}
-.cf{background:#fef9c3;} .co{background:#dbeafe;} .cr{background:#fee2e2;} .cw{background:#e0f2fe;} .ci{background:#f3e8ff;} .cp{background:#fce7f3;}
-.tcl{font-size:14px;font-weight:700;color:var(--tx);} .tdl{font-size:12px;color:var(--t2);margin-top:2px;}
+.cf{background:#fef9c3;}.co{background:#dbeafe;}.cr{background:#fee2e2;}.cw{background:#e0f2fe;}.ci{background:#f3e8ff;}.cp{background:#fce7f3;}
+.tcl{font-size:14px;font-weight:700;color:var(--tx);}.tdl{font-size:12px;color:var(--t2);margin-top:2px;}
 .tam{font-family:'Rajdhani',sans-serif;font-size:20px;font-weight:700;color:var(--acc);white-space:nowrap;}
 .tif{padding:8px 14px 10px;display:flex;align-items:center;justify-content:space-between;border-top:1px solid var(--bd);gap:6px;flex-wrap:wrap;}
 .tkm{display:inline-flex;align-items:center;gap:4px;background:var(--s2);border-radius:6px;padding:4px 8px;font-size:12px;color:var(--t2);font-weight:600;}
-.tdt{font-size:11px;color:var(--t2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:120px;}
+.tdt{font-size:11px;color:var(--t2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:130px;}
 .tacts{display:flex;gap:6px;flex-shrink:0;margin-left:auto;}
 .tab{width:30px;height:30px;border-radius:8px;border:1px solid var(--bd);background:var(--s2);display:flex;align-items:center;justify-content:center;font-size:14px;cursor:pointer;}
 .tab.del{border-color:#fecaca;background:#fef2f2;}
@@ -80,68 +107,85 @@ body{font-family:'Noto Sans Thai',sans-serif;background:var(--bg);color:var(--tx
 /* FAB */
 .fab{position:fixed;bottom:80px;right:20px;width:58px;height:58px;border-radius:50%;background:var(--ac2);color:#fff;display:flex;align-items:center;justify-content:center;font-size:28px;box-shadow:0 4px 20px rgba(0,170,210,.45);cursor:pointer;border:none;z-index:50;transition:transform .15s;}
 .fab:active{transform:scale(.92);}
-/* BOTTOM SHEET */
+/* Bottom Sheet */
 .bso{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:200;display:none;align-items:flex-end;}
 .bso.open{display:flex;}
-.bs{background:var(--wh);border-radius:20px 20px 0 0;width:100%;max-height:93vh;overflow-y:auto;animation:bsup .28s cubic-bezier(.34,1.1,.64,1);-webkit-overflow-scrolling:touch;}
+.bs{background:var(--wh);border-radius:20px 20px 0 0;width:100%;max-height:94vh;overflow-y:auto;animation:bsup .28s cubic-bezier(.34,1.1,.64,1);-webkit-overflow-scrolling:touch;}
 @keyframes bsup{from{transform:translateY(100%);}to{transform:translateY(0);}}
 .bshdl{width:40px;height:4px;background:var(--bd2);border-radius:2px;margin:12px auto 4px;}
-.bshdr{padding:8px 20px 16px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--bd);}
+.bshdr{padding:8px 20px 14px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--bd);}
 .bstitle{font-size:17px;font-weight:700;}
 .bsclose{background:var(--s2);border:none;width:30px;height:30px;border-radius:50%;font-size:15px;cursor:pointer;display:flex;align-items:center;justify-content:center;}
-.bsbody{padding:18px 20px 6px;} .bsftr{padding:12px 20px 24px;display:flex;gap:10px;}
-/* FORM */
-.fg{margin-bottom:16px;}
-.fg label{display:block;font-size:12px;font-weight:700;color:var(--t2);letter-spacing:.5px;margin-bottom:6px;text-transform:uppercase;}
-.fg label .req{color:var(--ac2);}
+.bsbody{padding:18px 20px 6px;}.bsftr{padding:12px 20px 28px;display:flex;gap:10px;}
+/* Form */
+.fg{margin-bottom:14px;}
+.fglbl{display:block;font-size:12px;font-weight:700;color:var(--t2);letter-spacing:.5px;margin-bottom:6px;text-transform:uppercase;}
+.fglbl .req{color:var(--ac2);}
 .fi{width:100%;background:var(--s2);border:1.5px solid var(--bd);color:var(--tx);border-radius:var(--rs);padding:13px 14px;font-size:16px;font-family:inherit;outline:none;transition:border-color .15s;-webkit-appearance:none;}
 .fi:focus{border-color:var(--ac2);background:#fff;}
 .fi::placeholder{color:var(--t3);}
 select.fi{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24'%3E%3Cpath fill='%2364748b' d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;padding-right:36px;}
 textarea.fi{min-height:70px;resize:none;}
-/* FUEL TOGGLE */
+/* Fuel toggle */
 .ftgl{display:flex;border:1.5px solid var(--bd);border-radius:var(--rs);overflow:hidden;}
 .fb{flex:1;padding:13px;text-align:center;font-size:15px;font-weight:600;border:none;background:var(--s2);color:var(--t2);cursor:pointer;font-family:inherit;}
 .fb.active{background:var(--acc);color:#fff;}
 .fb:first-child{border-right:1px solid var(--bd);}
-/* MAP */
+/* Fuel calc box */
+.fuel-calc{background:var(--acl);border:1.5px solid var(--ac2);border-radius:var(--rs);padding:13px 16px;display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:8px;}
+.fc-lbl{font-size:12px;color:var(--t2);margin-bottom:2px;}
+.fc-val{font-family:'Rajdhani',sans-serif;font-size:26px;font-weight:700;color:var(--acc);line-height:1;}
+.fc-unit{font-size:13px;color:var(--t2);}
+/* Last price hint */
+.lph{display:none;align-items:center;gap:8px;margin-top:7px;padding:9px 12px;background:#f0f9ff;border-radius:8px;border:1px solid #bae6fd;}
+.lph-txt{font-size:12px;color:#0369a1;flex:1;}
+.lph-use{font-size:12px;font-weight:700;color:var(--ac2);background:none;border:1.5px solid var(--ac2);border-radius:6px;padding:5px 12px;cursor:pointer;font-family:inherit;flex-shrink:0;}
+/* Map */
 #loc-map{height:175px;border-radius:var(--rs);overflow:hidden;border:1.5px solid var(--bd);margin-top:8px;display:none;}
 .locrow{display:flex;gap:8px;align-items:stretch;}
 .locrow .fi{flex:1;}
 .gpsbtn{background:var(--acl);border:1.5px solid var(--ac2);color:var(--ac2);border-radius:var(--rs);padding:0 14px;font-size:20px;cursor:pointer;flex-shrink:0;display:flex;align-items:center;}
-/* BUTTONS */
+/* Btns */
 .btsave{flex:1;background:var(--acc);color:#fff;border:none;border-radius:var(--rs);padding:16px;font-size:16px;font-weight:700;font-family:inherit;cursor:pointer;}
-.btsave:active{background:#001f45;}
 .btcancel{background:var(--s2);border:1.5px solid var(--bd);color:var(--t2);border-radius:var(--rs);padding:16px 20px;font-size:15px;font-weight:600;font-family:inherit;cursor:pointer;}
-/* CONFIG MODAL */
+/* Config */
 .movo{position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:300;display:none;align-items:center;justify-content:center;padding:20px;}
 .movo.open{display:flex;}
 .mbox{background:var(--wh);border-radius:var(--r);width:100%;max-width:440px;max-height:85vh;overflow-y:auto;box-shadow:var(--shl);}
-.mhdr{padding:18px 20px 14px;border-bottom:1px solid var(--bd);display:flex;align-items:center;justify-content:space-between;}
-.mtitle{font-size:16px;font-weight:700;}
-.mbody{padding:20px;} .mftr{padding:12px 20px 20px;display:flex;gap:10px;}
+.mhdr{padding:18px 20px 14px;border-bottom:1px solid var(--bd);font-size:16px;font-weight:700;}
+.mbody{padding:20px;}.mftr{padding:12px 20px 20px;display:flex;gap:10px;}
 .mtsave{flex:1;background:var(--acc);color:#fff;border:none;border-radius:8px;padding:14px;font-size:15px;font-weight:700;font-family:inherit;cursor:pointer;}
 .mtcancel{background:var(--s2);border:1px solid var(--bd);color:var(--t2);border-radius:8px;padding:14px 18px;font-size:14px;font-family:inherit;cursor:pointer;}
-/* TOAST */
+.cfgfg{margin-bottom:14px;}
+.cfgfg label{font-size:12px;font-weight:700;color:var(--t2);display:block;margin-bottom:6px;}
+.cfgfi{width:100%;border:1.5px solid var(--bd);background:var(--s2);border-radius:8px;padding:11px 12px;font-size:14px;font-family:inherit;color:var(--tx);outline:none;}
+.cfgfi:focus{border-color:var(--ac2);}
+/* Toast */
 .toast{position:fixed;bottom:90px;left:50%;transform:translateX(-50%) translateY(20px);background:#1e293b;color:#fff;padding:12px 20px;border-radius:30px;font-size:14px;font-weight:500;z-index:999;opacity:0;transition:all .25s;white-space:nowrap;max-width:90vw;box-shadow:0 4px 20px rgba(0,0,0,.25);}
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
-.toast.success{background:#15803d;} .toast.error{background:#dc2626;}
-details summary{cursor:pointer;color:var(--ac2);font-size:13px;font-weight:600;padding:8px 0;}
-pre{background:#f8fafc;border:1px solid var(--bd);border-radius:8px;padding:12px;font-size:10px;overflow-x:auto;color:var(--t2);line-height:1.5;white-space:pre-wrap;margin-top:8px;}
+.toast.success{background:#15803d;}.toast.error{background:#dc2626;}
 .leaflet-container{z-index:1;}
 </style>
 </head>
 <body>
 <div class="app">
+
+<!-- HEADER -->
 <div class="hdr">
   <div class="hdr-l">
     <div class="hlogo">H</div>
-    <div class="htitle"><div class="h1">Hyundai Stargazer Smart 7</div><div class="h2">5 ขษ 6548 · บันทึกการใช้รถ</div></div>
+    <div class="htitle">
+      <div class="h1">Hyundai Stargazer Smart 7</div>
+      <div class="h2">5 ขษ 6548 · บันทึกการใช้รถ</div>
+    </div>
   </div>
   <button class="cfgbtn" onclick="openConfig()">⚙</button>
 </div>
+
+<!-- PAGES -->
 <div class="pages">
-  <!-- PAGE TX -->
+
+  <!-- PAGE: TRANSACTIONS -->
   <div class="page active" id="page-tx">
     <div class="pc">
       <div class="srow">
@@ -162,130 +206,226 @@ pre{background:#f8fafc;border:1px solid var(--bd);border-radius:8px;padding:12px
       <div id="txlist"></div>
     </div>
   </div>
-  <!-- PAGE CAR -->
+
+  <!-- PAGE: SUMMARY -->
+  <div class="page" id="page-sum">
+    <div class="pc">
+      <div class="stabs">
+        <button class="stab active" onclick="showSum(this,'cat')">หมวดหมู่</button>
+        <button class="stab" onclick="showSum(this,'year')">รายปี</button>
+        <button class="stab" onclick="showSum(this,'month')">รายเดือน</button>
+      </div>
+      <div class="sum-panel active" id="sum-cat"></div>
+      <div class="sum-panel" id="sum-year"></div>
+      <div class="sum-panel" id="sum-month"></div>
+    </div>
+  </div>
+
+  <!-- PAGE: CAR + INSURANCE -->
   <div class="page" id="page-car">
     <div class="pc">
       <div class="sc">
-        <div class="sch"><div class="sci">🚗</div><div><div class="sct">Hyundai Stargazer Smart 7</div><div class="scs">ข้อมูลรถยนต์ (คงที่)</div></div></div>
+        <div class="sch"><div class="sci">🚗</div><div><div class="sct">ข้อมูลรถยนต์</div><div class="scs">ค่าคงที่</div></div></div>
         <div class="ir"><span class="il">รุ่น / แบบ</span><span class="iv">Stargazer Smart 7<br><span style="font-size:11px;color:var(--t2);font-weight:400">kUN35R-URMSHT</span></span></div>
         <div class="ir"><span class="il">ปีรถ</span><span class="iv">2023</span></div>
         <div class="ir"><span class="il">สี</span><span class="iv">ดำ (Phantom Black)</span></div>
-        <div class="ir"><span class="il">ทะเบียน</span><span class="iv">5 ขษ 6548<br><span style="font-size:11px;color:var(--t2);font-weight:400">กรุงเทพมหานคร</span></span></div>
-        <div class="ir"><span class="il">วันจดทะเบียน</span><span class="iv">21 ต.ค. 2567</span></div>
-        <div class="ir"><span class="il">เลขตัวถัง (VIN)</span><span class="iv"><span class="vbdg">MF3NC81DTRJO33107</span><br><span style="font-size:10px;color:var(--t3);font-weight:400">ที่นั่งด้านขวา</span></span></div>
-        <div class="ir"><span class="il">เลขเครื่องยนต์</span><span class="iv"><span class="vbdg">G4FLPQ248327</span><br><span style="font-size:10px;color:var(--t3);font-weight:400">ซ้ายเครื่องยนต์</span></span></div>
-        <div class="ir"><span class="il">เชื้อเพลิง</span><span class="iv">เบนซิน 4 สูบ</span></div>
-        <div class="ir"><span class="il">ขนาดเครื่อง</span><span class="iv">1,497 cc</span></div>
-        <div class="ir"><span class="il">กำลังสูงสุด</span><span class="iv">115 แรงม้า</span></div>
-        <div class="ir"><span class="il">น้ำหนัก GVW</span><span class="iv">2,750 กก.</span></div>
-        <div class="ir"><span class="il">ผู้จำหน่าย</span><span class="iv">ศูนย์ฮุนได<br><span style="font-size:11px;color:var(--t2);font-weight:400">รามอินทรา กม.4</span></span></div>
+        <div class="ir"><span class="il">ทะเบียน</span><span class="iv">5 ขษ 6548 · กรุงเทพฯ</span></div>
+        <div class="ir"><span class="il">จดทะเบียน</span><span class="iv">21 ต.ค. 2567</span></div>
+        <div class="ir"><span class="il">เลขตัวรถ (VIN)</span><span class="iv" style="font-family:monospace;font-size:11px">MF3NC81DTRJO33107</span></div>
+        <div class="ir"><span class="il">เลขเครื่อง</span><span class="iv" style="font-family:monospace;font-size:12px">G4FLPQ248327</span></div>
+        <div class="ir"><span class="il">เครื่องยนต์</span><span class="iv">เบนซิน 4 สูบ · 1,497 cc · 115 HP</span></div>
+        <div class="ir"><span class="il">น้ำหนัก</span><span class="iv">2,750 กก.</span></div>
+        <div class="ir"><span class="il">ดีลเลอร์</span><span class="iv">ศูนย์ฮุนได รามอินทรา กม.4</span></div>
       </div>
-    </div>
-  </div>
-  <!-- PAGE INS -->
-  <div class="page" id="page-ins">
-    <div class="pc">
+
+      <!-- INSURANCE -->
       <div class="sc">
-        <div class="sch"><div class="sci">🛡</div><div><div class="sct">กรมธรรม์ประกันภัย</div><div class="scs">ข้อมูลประกันรถยนต์</div></div></div>
-        <div class="isb exp" id="isb">
-          <div class="isi">⚠️</div>
-          <div><div class="iss" id="is-s">หมดอายุแล้ว</div><div class="isd" id="is-d">กรุณาต่ออายุ</div></div>
+        <div class="sch">
+          <div class="sci">🛡</div>
+          <div><div class="sct">กรมธรรม์ประกันภัย</div><div class="scs" id="ins-cnt-lbl">0 รายการ</div></div>
         </div>
-        <div class="ir"><span class="il">ปีกรมธรรม์</span><span class="iv">2567</span></div>
-        <div class="ir"><span class="il">เลขกรมธรรม์</span><span class="iv" style="font-size:12px">18147-67129/กธ/058456-12</span></div>
-        <div class="ir"><span class="il">วันสิ้นสุด</span><span class="iv">20 เม.ย. 2568</span></div>
+        <div id="ins-list"></div>
+        <button class="ins-add-btn" onclick="openInsForm()">＋ เพิ่มกรมธรรม์ปีใหม่</button>
+        <div class="ins-form-wrap" id="ins-form">
+          <div style="font-size:14px;font-weight:700;color:var(--acc);margin-bottom:12px">เพิ่มกรมธรรม์</div>
+          <div style="display:flex;gap:10px">
+            <div class="ifg" style="flex:1"><label>ปี (พ.ศ.)</label><input class="ifi" id="if-yr" type="number" placeholder="2568"></div>
+            <div class="ifg" style="flex:2"><label>ประเภท</label>
+              <select class="ifi" id="if-type" style="-webkit-appearance:none;background-image:url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2216%22 height=%2216%22 viewBox=%220 0 24 24%22%3E%3Cpath fill=%22%2364748b%22 d=%22M7 10l5 5 5-5z%22/%3E%3C/svg%3E');background-repeat:no-repeat;background-position:right 8px center;padding-right:28px;">
+                <option value="">-- เลือก --</option>
+                <option>ประกันชั้น 1</option><option>ประกันชั้น 2+</option><option>ประกันชั้น 2</option>
+                <option>ประกันชั้น 3+</option><option>ประกันชั้น 3</option><option>พ.ร.บ.</option>
+              </select>
+            </div>
+          </div>
+          <div class="ifg"><label>บริษัทประกัน</label><input class="ifi" id="if-co" type="text" placeholder="ชื่อบริษัท"></div>
+          <div class="ifg"><label>เลขกรมธรรม์</label><input class="ifi" id="if-polno" type="text" placeholder="Policy Number"></div>
+          <div style="display:flex;gap:10px">
+            <div class="ifg" style="flex:1"><label>วันเริ่ม</label><input class="ifi" id="if-start" type="date"></div>
+            <div class="ifg" style="flex:1"><label>วันสิ้นสุด</label><input class="ifi" id="if-end" type="date"></div>
+          </div>
+          <div class="ifg"><label>ค่าเบี้ย (บาท)</label><input class="ifi" id="if-prem" type="number" placeholder="0.00"></div>
+          <div class="ifg"><label>หมายเหตุ</label><input class="ifi" id="if-note" type="text" placeholder="รายละเอียด"></div>
+          <div class="ins-btns">
+            <button class="ins-cancel" onclick="closeInsForm()">ยกเลิก</button>
+            <button class="ins-save" onclick="saveIns()">💾 บันทึก</button>
+          </div>
+        </div>
       </div>
-      <div class="sc" style="padding:16px"><div style="font-size:13px;color:var(--t2);line-height:1.8">💡 <strong style="color:var(--tx)">หมายเหตุ:</strong> กรมธรรม์หมดอายุแล้ว — กรุณาต่อประกันและอัพเดทข้อมูล</div></div>
     </div>
   </div>
-</div>
+
+</div><!-- /pages -->
+
+<button class="fab" onclick="openAdd()">＋</button>
+
 <div class="bnav">
-  <button class="ni active" id="nav-tx" onclick="showPage('tx')"><div class="ico">📋</div><div class="lbl">ประวัติ</div><span class="nbdg" id="nbdg">0</span></button>
-  <button class="ni" id="nav-car" onclick="showPage('car')"><div class="ico">🚗</div><div class="lbl">ข้อมูลรถ</div></button>
-  <button class="ni" id="nav-ins" onclick="showPage('ins')"><div class="ico">🛡</div><div class="lbl">กรมธรรม์</div></button>
+  <button class="ni active" id="ni-tx" onclick="showPage('tx')"><span class="ico">📋</span><span class="lbl">บันทึก</span></button>
+  <button class="ni" id="ni-sum" onclick="showPage('sum')"><span class="ico">📊</span><span class="lbl">สรุป</span></button>
+  <button class="ni" id="ni-car" onclick="showPage('car')"><span class="ico">🚗</span><span class="lbl">รถ/ประกัน</span></button>
 </div>
-</div>
+</div><!-- /app -->
 
-<button class="fab" id="fab" onclick="openAdd()">+</button>
-
-<!-- BOTTOM SHEET -->
+<!-- TRANSACTION BOTTOM SHEET -->
 <div class="bso" id="bso">
   <div class="bs">
     <div class="bshdl"></div>
-    <div class="bshdr"><div class="bstitle" id="bst">+ เพิ่มรายการ</div><button class="bsclose" onclick="closeBS()">✕</button></div>
-    <div class="bsbody">
-      <div class="fg"><label>หมวดหมู่ <span class="req">*</span></label>
-        <select class="fi" id="tx-cat" onchange="onCat()">
-          <option value="">— เลือกหมวดหมู่ —</option>
-          <option value="fuel">⛽  เติมน้ำมัน</option>
-          <option value="oil">🔧  เปลี่ยนน้ำมันเครื่อง</option>
-          <option value="repair">🔨  เปลี่ยน / ซ่อม อื่นๆ</option>
-          <option value="wash">🚿  ล้างรถ</option>
-          <option value="insure">🛡  ประกัน</option>
-          <option value="payment">💳  จ่ายค่างวดรถ</option>
-        </select></div>
-      <div class="fg"><label>วันที่ <span class="req">*</span></label><input type="date" class="fi" id="tx-date"></div>
-      <div class="fg"><label>เลขไมล์รถ (Km) <span class="req">*</span></label><input type="number" class="fi" id="tx-km" placeholder="เช่น 32775" inputmode="numeric"></div>
-      <div id="fg-fuel" style="display:none">
-        <div class="fg"><label>ชนิดน้ำมัน</label>
-          <div class="ftgl"><button class="fb active" id="fb95" onclick="setFuel('Sohol95')">Sohol 95</button><button class="fb" id="fb91" onclick="setFuel('Sohol91')">Sohol 91</button></div></div>
-        <div class="fg"><label>จำนวนลิตร</label><input type="number" class="fi" id="tx-lit" placeholder="0.000" step="0.001" inputmode="decimal"></div>
-        <div class="fg"><label>ราคาน้ำมัน ต่อ ลิตร (บาท)</label>
-          <input type="number" class="fi" id="tx-fpr" placeholder="0.000" step="0.001" inputmode="decimal">
-          <div style="font-size:11px;color:var(--t2);margin-top:5px" id="lph"></div></div>
-      </div>
-      <div class="fg"><label>จำนวนเงินที่จ่าย (บาท)</label><input type="number" class="fi" id="tx-amt" placeholder="฿ 0.00" step="0.01" inputmode="decimal"></div>
-      <div class="fg"><label>หมายเหตุ</label><textarea class="fi" id="tx-note" placeholder="รายละเอียดเพิ่มเติม..."></textarea></div>
-      <div class="fg"><label>สถานที่</label>
-        <div class="locrow"><input type="text" class="fi" id="tx-place" placeholder="กด 📍 เพื่อรับตำแหน่งอัตโนมัติ"><button class="gpsbtn" onclick="getGPS()">📍</button></div>
-        <input type="hidden" id="tx-lat"><input type="hidden" id="tx-lng">
-        <div id="loc-map"></div></div>
+    <div class="bshdr">
+      <span class="bstitle" id="bst">+ เพิ่มรายการ</span>
+      <button class="bsclose" onclick="closeBS()">✕</button>
     </div>
-    <div class="bsftr"><button class="btcancel" onclick="closeBS()">ยกเลิก</button><button class="btsave" onclick="saveTx()">💾 บันทึก</button></div>
+    <div class="bsbody">
+      <div class="fg">
+        <label class="fglbl">หมวดหมู่ <span class="req">*</span></label>
+        <select class="fi" id="tx-cat" onchange="onCat()">
+          <option value="fuel">⛽ เติมน้ำมัน</option>
+          <option value="oil">🔧 เปลี่ยนน้ำมันเครื่อง</option>
+          <option value="repair">🔨 ซ่อมบำรุงอื่นๆ</option>
+          <option value="wash">🚿 ล้างรถ</option>
+          <option value="insure">🛡 ประกัน</option>
+          <option value="payment">💳 จ่ายค่างวดรถ</option>
+        </select>
+      </div>
+      <div style="display:flex;gap:10px">
+        <div class="fg" style="flex:1"><label class="fglbl">วันที่ <span class="req">*</span></label><input class="fi" type="date" id="tx-date"></div>
+        <div class="fg" style="flex:1"><label class="fglbl">ไมล์ (km) <span class="req">*</span></label><input class="fi" type="number" id="tx-km" placeholder="15000" inputmode="numeric"></div>
+      </div>
+
+      <!-- FUEL SECTION -->
+      <div id="fg-fuel">
+        <div class="fg">
+          <label class="fglbl">ชนิดน้ำมัน</label>
+          <div class="ftgl">
+            <button class="fb active" id="fb95" onclick="setFuel('Sohol95')">Sohol95</button>
+            <button class="fb" id="fb91" onclick="setFuel('Sohol91')">Sohol91</button>
+          </div>
+        </div>
+        <div class="fg">
+          <label class="fglbl">ราคา/ลิตร (บาท)</label>
+          <input class="fi" type="number" id="tx-fpr" placeholder="35.320" step="0.001" inputmode="decimal" oninput="calcLit()">
+          <div class="lph" id="lph">
+            <span class="lph-txt" id="lph-txt"></span>
+            <button class="lph-use" onclick="useLast()">ใช้ค่านี้</button>
+          </div>
+        </div>
+        <div class="fg">
+          <label class="fglbl">จำนวนเงินที่จ่าย (บาท)</label>
+          <input class="fi" type="number" id="tx-amt" placeholder="1000" step="0.01" inputmode="decimal" oninput="calcLit()">
+          <div class="fuel-calc" id="fuel-calc" style="display:none">
+            <div>
+              <div class="fc-lbl">จำนวนลิตร (คำนวณอัตโนมัติ)</div>
+              <div style="display:flex;align-items:baseline;gap:5px">
+                <span class="fc-val" id="fc-lit">0.000</span>
+                <span class="fc-unit">ลิตร</span>
+              </div>
+            </div>
+            <span style="font-size:28px">⛽</span>
+          </div>
+          <input type="hidden" id="tx-lit">
+        </div>
+      </div>
+
+      <!-- NON-FUEL AMOUNT -->
+      <div class="fg" id="fg-amt-o" style="display:none">
+        <label class="fglbl">จำนวนเงินที่จ่าย (บาท)</label>
+        <input class="fi" type="number" id="tx-amt-o" placeholder="0.00" step="0.01" inputmode="decimal">
+      </div>
+
+      <div class="fg"><label class="fglbl">หมายเหตุ</label><textarea class="fi" id="tx-note" placeholder="รายละเอียดเพิ่มเติม..."></textarea></div>
+
+      <div class="fg">
+        <label class="fglbl">สถานที่</label>
+        <div class="locrow">
+          <input class="fi" type="text" id="tx-place" placeholder="กำลังรับตำแหน่ง GPS...">
+          <button class="gpsbtn" onclick="getGPS()">📍</button>
+        </div>
+        <input type="hidden" id="tx-lat">
+        <input type="hidden" id="tx-lng">
+        <div id="loc-map"></div>
+      </div>
+    </div>
+    <div class="bsftr">
+      <button class="btcancel" onclick="closeBS()">ยกเลิก</button>
+      <button class="btsave" onclick="saveTx()">💾 บันทึก</button>
+    </div>
   </div>
 </div>
 
 <!-- CONFIG MODAL -->
 <div class="movo" id="cfg-m">
   <div class="mbox">
-    <div class="mhdr"><div class="mtitle">⚙ ตั้งค่า Google Sheets</div><button class="bsclose" onclick="closeConfig()">✕</button></div>
+    <div class="mhdr">⚙ ตั้งค่า Google Sheets</div>
     <div class="mbody">
-      <div style="background:#f0f9ff;border:1px solid #bae6fd;border-radius:8px;padding:12px;margin-bottom:14px;font-size:12px;color:#0369a1;line-height:1.8">
-        <strong>วิธีตั้งค่า:</strong><br>
-        1. <a href="https://script.google.com" target="_blank" style="color:#0ea5e9">script.google.com</a> → New Project<br>
-        2. วาง Apps Script Code → Deploy as Web App<br>
-        3. Execute as: Me / Access: Anyone → Copy Web App URL
-      </div>
-      <div class="fg"><label>Web App URL</label><input type="url" class="fi" id="cfg-url" placeholder="https://script.google.com/macros/s/.../exec" style="font-size:13px"></div>
-      <details><summary>📄 Apps Script Code (คลิกดู)</summary><pre id="script-pre"></pre></details>
+      <div style="background:#f0f9ff;border:1px solid #bae6fd;border-radius:8px;padding:12px;margin-bottom:14px;font-size:12px;color:#0369a1;line-height:1.7"><strong>วิธีเชื่อม Google Sheets:</strong><br>1. script.google.com → New Project<br>2. วาง Apps Script → Deploy → Web App<br>3. Execute: Me · Access: Anyone<br>4. วาง URL ด้านล่าง</div>
+      <div class="cfgfg"><label>Google Apps Script Web App URL</label><input class="cfgfi" type="text" id="cfg-url" placeholder="https://script.google.com/macros/s/.../exec"></div>
     </div>
-    <div class="mftr"><button class="mtcancel" onclick="closeConfig()">ยกเลิก</button><button class="mtsave" onclick="saveConfig()">✓ บันทึก</button></div>
+    <div class="mftr">
+      <button class="mtcancel" onclick="closeConfig()">ยกเลิก</button>
+      <button class="mtsave" onclick="saveConfig()">✓ บันทึก</button>
+    </div>
   </div>
 </div>
+
 <div class="toast" id="toast"></div>
 
 <script>
 var TXS=JSON.parse(localStorage.getItem('hyu_tx')||'[]');
+var INS=JSON.parse(localStorage.getItem('hyu_ins')||JSON.stringify([{yr:'2567',type:'ประกันชั้น 1',co:'',polno:'18147-67129/กธ/058456-12',start:'',end:'2025-04-20',prem:'',note:''}]));
 var CFG=JSON.parse(localStorage.getItem('hyu_cfg')||'{}');
-var editId=null,curF='all',selFuel='Sohol95',LM=null,LMk=null;
+var editId=null,curF='all',selFuel='Sohol95',LM=null,LMk=null,curSum='cat',yrOpen={};
+var CAT={fuel:{l:'เติมน้ำมัน',i:'⛽',c:'cf'},oil:{l:'น้ำมันเครื่อง',i:'🔧',c:'co'},repair:{l:'ซ่อมบำรุง',i:'🔨',c:'cr'},wash:{l:'ล้างรถ',i:'🚿',c:'cw'},insure:{l:'ประกัน',i:'🛡',c:'ci'},payment:{l:'ค่างวด',i:'💳',c:'cp'}};
 var MO=['ม.ค.','ก.พ.','มี.ค.','เม.ย.','พ.ค.','มิ.ย.','ก.ค.','ส.ค.','ก.ย.','ต.ค.','พ.ย.','ธ.ค.'];
-var CAT={fuel:{l:'เติมน้ำมัน',i:'⛽',c:'cf'},oil:{l:'น้ำมันเครื่อง',i:'🔧',c:'co'},repair:{l:'เปลี่ยน/ซ่อม',i:'🔨',c:'cr'},wash:{l:'ล้างรถ',i:'🚿',c:'cw'},insure:{l:'ประกัน',i:'🛡',c:'ci'},payment:{l:'ค่างวดรถ',i:'💳',c:'cp'}};
-var GC="const SHEET_ID = 'YOUR_SPREADSHEET_ID';\nfunction doPost(e) {\n  try {\n    const d = JSON.parse(e.postData.contents);\n    const ss = SpreadsheetApp.openById(SHEET_ID);\n    let sh;\n    if (d.sheet === 'transactions') {\n      sh = ss.getSheetByName('Transactions') || ss.insertSheet('Transactions');\n      if (sh.getLastRow()===0) sh.appendRow(['ID','Category','Date','Km','FuelType','Liters','FuelPrice','Amount','Place','Lat','Lng','Note','CreatedAt']);\n      const t=d.payload;\n      sh.appendRow([t.id,t.cat,t.date,t.km,t.fuelType||'',t.liters||'',t.fuelPrice||'',t.amount||'',t.place||'',t.lat||'',t.lng||'',t.note||'',t.createdAt]);\n    } else if (d.sheet==='delete_tx') {\n      sh = ss.getSheetByName('Transactions');\n      if(sh){const rows=sh.getDataRange().getValues();for(let i=rows.length-1;i>=1;i--){if(String(rows[i][0])===String(d.id)){sh.deleteRow(i+1);break;}}}\n    }\n    return ContentService.createTextOutput(JSON.stringify({ok:true})).setMimeType(ContentService.MimeType.JSON);\n  } catch(err){return ContentService.createTextOutput(JSON.stringify({ok:false,error:err.message})).setMimeType(ContentService.MimeType.JSON);}\n}";
 
-document.addEventListener('DOMContentLoaded',function(){
-  document.getElementById('script-pre').textContent=GC;
-  if(CFG.url) document.getElementById('cfg-url').value=CFG.url;
-  setToday(); renderAll(); updIns(); autoLoc();
+window.addEventListener('load',function(){
+  setToday();renderAll();renderIns();autoLoc();
+  document.getElementById('bso').addEventListener('click',function(e){if(e.target===this)closeBS();});
+  document.getElementById('cfg-m').addEventListener('click',function(e){if(e.target===this)closeConfig();});
 });
 
-function setToday(){var d=new Date(),y=d.getFullYear(),m=String(d.getMonth()+1).padStart(2,'0'),dd=String(d.getDate()).padStart(2,'0');document.getElementById('tx-date').value=y+'-'+m+'-'+dd;}
-function showPage(p){['tx','car','ins'].forEach(function(id){document.getElementById('page-'+id).classList.toggle('active',id===p);document.getElementById('nav-'+id).classList.toggle('active',id===p);});document.getElementById('fab').style.display=p==='tx'?'':'none';}
-function updIns(){var end=new Date('2025-04-20'),now=new Date(),diff=Math.ceil((end-now)/864e5);var b=document.getElementById('isb'),s=document.getElementById('is-s'),d=document.getElementById('is-d');if(diff<0){b.className='isb exp';s.textContent='หมดอายุแล้ว '+Math.abs(diff)+' วัน';d.textContent='กรุณาต่ออายุกรมธรรม์โดยด่วน';}else if(diff<=30){b.className='isb exp';s.textContent='ใกล้หมดอายุ — เหลือ '+diff+' วัน';d.textContent='ต่อก่อน 20 เม.ย. 2568';}else{b.className='isb ok';s.textContent='ยังมีอายุ — เหลือ '+diff+' วัน';d.textContent='สิ้นสุด 20 เม.ย. 2568';}}
-function renderAll(){renderTx();updStats();document.getElementById('nbdg').textContent=TXS.length;}
+function showPage(p){
+  document.querySelectorAll('.page').forEach(function(x){x.classList.remove('active');});
+  document.querySelectorAll('.ni').forEach(function(x){x.classList.remove('active');});
+  document.getElementById('page-'+p).classList.add('active');
+  document.getElementById('ni-'+p).classList.add('active');
+  if(p==='sum')renderSum();
+}
+function renderAll(){updStats();renderTx();}
+
+function updStats(){
+  var s=TXS.reduce(function(a,t){return a+(parseFloat(t.amount)||0);},0);
+  var kms=TXS.map(function(t){return t.km||0;}).filter(Boolean);
+  var mk=kms.length?Math.max.apply(null,kms):0;
+  var fc=TXS.filter(function(t){return t.cat==='fuel';}).length;
+  document.getElementById('st').textContent=TXS.length;
+  document.getElementById('ss').textContent='฿'+s.toLocaleString('th-TH',{minimumFractionDigits:0,maximumFractionDigits:0});
+  document.getElementById('sk').textContent=mk?mk.toLocaleString():'—';
+  document.getElementById('sf').textContent=fc;
+}
+
 function getFlt(){return curF==='all'?TXS.slice():TXS.filter(function(t){return t.cat===curF;});}
 function renderTx(){
   var el=document.getElementById('txlist'),filt=getFlt();
-  if(!filt.length){el.innerHTML='<div class="etx"><div class="ei">📭</div><p>ยังไม่มีรายการ<br>กด + เพื่อเพิ่มรายการ</p></div>';return;}
+  if(!filt.length){el.innerHTML='<div class="etx"><div class="ei">📭</div><p>ยังไม่มีรายการ<br>กด ＋ เพื่อเพิ่มรายการ</p></div>';return;}
   var grp={};filt.forEach(function(t){if(!grp[t.date])grp[t.date]=[];grp[t.date].push(t);});
   var dates=Object.keys(grp).sort(function(a,b){return b.localeCompare(a);});
   var h='';
@@ -297,7 +437,7 @@ function renderTx(){
       var ri=TXS.findIndex(function(t){return t.id===tx.id;});
       var mu=tx.lat&&tx.lng?'https://maps.google.com/?q='+tx.lat+','+tx.lng:null;
       var det='';
-      if(tx.cat==='fuel'){det=(tx.fuelType||'');if(tx.liters)det+=' '+tx.liters+'ล.';if(tx.fuelPrice)det+=' @฿'+tx.fuelPrice;}
+      if(tx.cat==='fuel'){det=(tx.fuelType||'');if(tx.liters)det+=' '+parseFloat(tx.liters).toFixed(2)+'ล.';if(tx.fuelPrice)det+=' @฿'+tx.fuelPrice;}
       else if(tx.note)det=tx.note.substring(0,28);
       else if(tx.place)det=tx.place.substring(0,28);
       h+='<div class="ti"><div class="tih"><div class="til"><div class="tci '+cat.c+'">'+cat.i+'</div><div><div class="tcl">'+cat.l+'</div><div class="tdl">'+fmtD(tx.date)+'</div></div></div>'+(tx.amount?'<div class="tam">฿'+Number(tx.amount).toLocaleString('th-TH',{minimumFractionDigits:2,maximumFractionDigits:2})+'</div>':'')+'</div><div class="tif"><span class="tkm">🔢 '+Number(tx.km).toLocaleString()+' km</span>'+(det?'<span class="tdt">'+det+'</span>':'')+'<div class="tacts">'+(mu?'<a class="maplnk" href="'+mu+'" target="_blank">📍</a>':'')+'<button class="tab" onclick="editTx('+ri+')">✏️</button><button class="tab del" onclick="delTx('+ri+')">🗑</button></div></div></div>';
@@ -305,26 +445,213 @@ function renderTx(){
   });
   el.innerHTML=h;
 }
-function updStats(){var s=TXS.reduce(function(a,t){return a+(parseFloat(t.amount)||0);},0),kms=TXS.map(function(t){return t.km||0;}).filter(function(k){return k>0;}),mk=kms.length?Math.max.apply(null,kms):0,fc=TXS.filter(function(t){return t.cat==='fuel';}).length;document.getElementById('st').textContent=TXS.length;document.getElementById('ss').textContent='฿'+s.toLocaleString('th-TH',{minimumFractionDigits:0,maximumFractionDigits:0});document.getElementById('sk').textContent=mk?mk.toLocaleString():'—';document.getElementById('sf').textContent=fc;}
 function flt(btn,cat){document.querySelectorAll('.chip').forEach(function(b){b.classList.remove('active');});btn.classList.add('active');curF=cat;renderTx();}
+
+// SUMMARY
+function showSum(btn,mode){
+  document.querySelectorAll('.stab').forEach(function(b){b.classList.remove('active');});
+  btn.classList.add('active');curSum=mode;
+  document.querySelectorAll('.sum-panel').forEach(function(p){p.classList.remove('active');});
+  document.getElementById('sum-'+mode).classList.add('active');
+  renderSum();
+}
+function renderSum(){
+  if(curSum==='cat')renderSumCat();
+  else if(curSum==='year')renderSumYr();
+  else renderSumMo();
+}
+function fmtB(n){return(parseFloat(n)||0).toLocaleString('th-TH',{minimumFractionDigits:2,maximumFractionDigits:2});}
+function fmtB0(n){return(parseFloat(n)||0).toLocaleString('th-TH',{minimumFractionDigits:0,maximumFractionDigits:0});}
+
+function renderSumCat(){
+  var el=document.getElementById('sum-cat');
+  var tot={};var cnt={};
+  TXS.forEach(function(t){if(!tot[t.cat]){tot[t.cat]=0;cnt[t.cat]=0;}tot[t.cat]+=(parseFloat(t.amount)||0);cnt[t.cat]++;});
+  var grand=Object.values(tot).reduce(function(a,v){return a+v;},0);
+  var h='<div class="sum-table"><div class="sum-row sum-hdr"><span class="sum-label">หมวดหมู่</span><span class="sum-amt">รวม</span></div>';
+  Object.keys(CAT).forEach(function(k){
+    var c=CAT[k];var a=tot[k]||0;var n=cnt[k]||0;
+    h+='<div class="sum-row"><span class="sum-label">'+c.i+' '+c.l+'<div class="sum-sub2">'+n+' รายการ</div></span><span class="sum-amt">฿'+fmtB(a)+'</span></div>';
+  });
+  h+='<div class="sum-row sum-total-row"><span class="sum-label" style="color:var(--acc)">💰 รวมทั้งหมด</span><span class="sum-amt">฿'+fmtB(grand)+'</span></div></div>';
+  el.innerHTML=h;
+}
+
+function renderSumYr(){
+  var el=document.getElementById('sum-year');
+  var tree={};
+  TXS.forEach(function(t){
+    if(!t.date)return;
+    var p=t.date.split('-');
+    var yr=(parseInt(p[0])+543).toString();
+    var mo=p[1];
+    var a=parseFloat(t.amount)||0;
+    if(!tree[yr])tree[yr]={tot:0,mo:{}};
+    tree[yr].tot+=a;
+    if(!tree[yr].mo[mo])tree[yr].mo[mo]={tot:0,cat:{}};
+    tree[yr].mo[mo].tot+=a;
+    if(!tree[yr].mo[mo].cat[t.cat])tree[yr].mo[mo].cat[t.cat]=0;
+    tree[yr].mo[mo].cat[t.cat]+=a;
+  });
+  var yrs=Object.keys(tree).sort(function(a,b){return b-a;});
+  if(!yrs.length){el.innerHTML='<div class="etx"><div class="ei">📊</div><p>ยังไม่มีข้อมูล</p></div>';return;}
+  var h='';
+  yrs.forEach(function(yr){
+    var d=tree[yr];var op=yrOpen[yr];
+    h+='<div class="sum-table" style="margin-bottom:10px">';
+    h+='<div class="sum-row sum-hdr" style="cursor:pointer" onclick="togYr(\''+yr+'\')">';
+    h+='<span class="sum-label">📅 ปี '+yr+'</span>';
+    h+='<span style="display:flex;align-items:center;gap:8px"><span class="sum-amt">฿'+fmtB0(d.tot)+'</span><span style="color:rgba(255,255,255,.8);font-size:14px">'+(op?'▲':'▼')+'</span></span>';
+    h+='</div>';
+    if(op){
+      var mos=Object.keys(d.mo).sort(function(a,b){return b-a;});
+      mos.forEach(function(mo){
+        var md=d.mo[mo];
+        h+='<div class="yr-mo-row"><span style="font-weight:600;font-size:13px">'+MO[parseInt(mo)-1]+'</span><span style="font-family:Rajdhani,sans-serif;font-size:15px;font-weight:700;color:var(--acc)">฿'+fmtB(md.tot)+'</span></div>';
+        Object.keys(md.cat).forEach(function(cat){
+          var c=CAT[cat]||{l:cat,i:'📌'};
+          h+='<div class="yr-cat-row"><span style="font-size:12px;color:var(--t2)">'+c.i+' '+c.l+'</span><span style="font-size:13px;font-weight:600;color:var(--t2)">฿'+fmtB(md.cat[cat])+'</span></div>';
+        });
+      });
+    }
+    h+='</div>';
+  });
+  el.innerHTML=h;
+}
+function togYr(yr){yrOpen[yr]=!yrOpen[yr];renderSumYr();}
+
+function renderSumMo(){
+  var el=document.getElementById('sum-month');
+  var tree={};
+  TXS.forEach(function(t){
+    if(!t.date)return;
+    var p=t.date.split('-');
+    var yr=(parseInt(p[0])+543).toString();
+    var mo=p[1];var key=yr+'-'+mo;
+    var a=parseFloat(t.amount)||0;
+    if(!tree[key])tree[key]={yr:yr,mo:mo,tot:0,cat:{}};
+    tree[key].tot+=a;
+    if(!tree[key].cat[t.cat])tree[key].cat[t.cat]=0;
+    tree[key].cat[t.cat]+=a;
+  });
+  var keys=Object.keys(tree).sort(function(a,b){return b.localeCompare(a);});
+  if(!keys.length){el.innerHTML='<div class="etx"><div class="ei">📊</div><p>ยังไม่มีข้อมูล</p></div>';return;}
+  var h='';
+  keys.forEach(function(k){
+    var d=tree[k];
+    h+='<div class="sum-table" style="margin-bottom:10px"><div class="sum-row sum-hdr"><span class="sum-label">'+MO[parseInt(d.mo)-1]+' '+d.yr+'</span><span class="sum-amt">฿'+fmtB(d.tot)+'</span></div>';
+    Object.keys(d.cat).forEach(function(cat){
+      var c=CAT[cat]||{l:cat,i:'📌'};
+      h+='<div class="sum-row"><span class="sum-label">'+c.i+' '+c.l+'</span><span class="sum-amt">฿'+fmtB(d.cat[cat])+'</span></div>';
+    });
+    h+='</div>';
+  });
+  el.innerHTML=h;
+}
+
+// INSURANCE
+function renderIns(){
+  var el=document.getElementById('ins-list');
+  var today=new Date();
+  document.getElementById('ins-cnt-lbl').textContent=INS.length+' รายการ';
+  if(!INS.length){el.innerHTML='<div style="padding:16px;text-align:center;color:var(--t3);font-size:13px">ยังไม่มีกรมธรรม์</div>';return;}
+  var sorted=INS.slice().sort(function(a,b){return(b.yr||'').localeCompare(a.yr||'');});
+  var h='';
+  sorted.forEach(function(ins){
+    var ri=INS.indexOf(ins);
+    var endDate=ins.end?new Date(ins.end):null;
+    var diff=endDate?Math.ceil((endDate-today)/864e5):null;
+    var badge='';
+    if(diff===null)badge='';
+    else if(diff<0)badge='<span class="ibdg ib-exp">หมดอายุแล้ว</span>';
+    else if(diff<=30)badge='<span class="ibdg ib-warn">เหลือ '+diff+' วัน</span>';
+    else badge='<span class="ibdg ib-ok">มีผล</span>';
+    h+='<div class="ins-item"><div class="ins-row"><div class="ins-yr">ปี '+(ins.yr||'—')+'</div><div class="ins-detail">';
+    if(ins.type)h+='<div style="font-size:12px;font-weight:700;color:var(--acc);margin-bottom:2px">'+ins.type+'</div>';
+    if(ins.co)h+='<div style="font-size:12px;color:var(--t2)">'+ins.co+'</div>';
+    if(ins.polno)h+='<div class="ins-polno">'+ins.polno+'</div>';
+    if(ins.start||ins.end)h+='<div class="ins-dates">'+(ins.start?fmtD(ins.start):'')+(ins.start&&ins.end?' → ':'')+(ins.end?fmtD(ins.end):'')+'</div>';
+    if(ins.prem)h+='<div class="ins-dates">เบี้ย ฿'+parseFloat(ins.prem).toLocaleString('th-TH')+'</div>';
+    h+=badge+'</div><button style="background:none;border:none;color:var(--red);font-size:20px;cursor:pointer;padding:4px;flex-shrink:0" onclick="delIns('+ri+')">🗑</button></div></div>';
+  });
+  el.innerHTML=h;
+}
+function openInsForm(){
+  var f=document.getElementById('ins-form');
+  ['if-yr','if-type','if-co','if-polno','if-start','if-end','if-prem','if-note'].forEach(function(id){document.getElementById(id).value='';});
+  f.classList.add('open');
+  setTimeout(function(){f.scrollIntoView({behavior:'smooth',block:'nearest'});},100);
+}
+function closeInsForm(){document.getElementById('ins-form').classList.remove('open');}
+function saveIns(){
+  var ins={yr:document.getElementById('if-yr').value,type:document.getElementById('if-type').value,co:document.getElementById('if-co').value,polno:document.getElementById('if-polno').value,start:document.getElementById('if-start').value,end:document.getElementById('if-end').value,prem:document.getElementById('if-prem').value,note:document.getElementById('if-note').value};
+  INS.push(ins);
+  localStorage.setItem('hyu_ins',JSON.stringify(INS));
+  closeInsForm();renderIns();showToast('บันทึกกรมธรรม์แล้ว ✓','success');
+}
+function delIns(idx){if(!confirm('ลบกรมธรรม์นี้?'))return;INS.splice(idx,1);localStorage.setItem('hyu_ins',JSON.stringify(INS));renderIns();showToast('ลบแล้ว','success');}
+
+// ADD TX - default fuel
 function openAdd(){
   editId=null;document.getElementById('bst').textContent='+ เพิ่มรายการ';
   clearF();setToday();
+  document.getElementById('tx-cat').value='fuel';onCat();
   var llat=localStorage.getItem('hyu_llat'),llng=localStorage.getItem('hyu_llng'),lpl=localStorage.getItem('hyu_lpl');
-  if(llat&&llng){document.getElementById('tx-lat').value=llat;document.getElementById('tx-lng').value=llng;document.getElementById('tx-place').value=lpl||llat+', '+llng;showMap(parseFloat(llat),parseFloat(llng));}
+  if(llat&&llng){document.getElementById('tx-lat').value=llat;document.getElementById('tx-lng').value=llng;document.getElementById('tx-place').value=lpl||llat+','+llng;showMap(parseFloat(llat),parseFloat(llng));}
   document.getElementById('bso').classList.add('open');
 }
 function closeBS(){document.getElementById('bso').classList.remove('open');if(LM){LM.remove();LM=null;LMk=null;}document.getElementById('loc-map').style.display='none';}
-function clearF(){['tx-cat','tx-km','tx-lit','tx-fpr','tx-amt','tx-note','tx-place','tx-lat','tx-lng'].forEach(function(id){var el=document.getElementById(id);if(el)el.value='';});document.getElementById('fg-fuel').style.display='none';selFuel='Sohol95';setFuel('Sohol95');}
-function onCat(){var c=document.getElementById('tx-cat').value;document.getElementById('fg-fuel').style.display=c==='fuel'?'':'none';if(c==='fuel')fillFP();}
+function clearF(){
+  ['tx-km','tx-lit','tx-fpr','tx-amt','tx-amt-o','tx-note','tx-place','tx-lat','tx-lng'].forEach(function(id){var el=document.getElementById(id);if(el)el.value='';});
+  document.getElementById('fuel-calc').style.display='none';
+  document.getElementById('fg-fuel').style.display='none';
+  document.getElementById('fg-amt-o').style.display='none';
+  selFuel='Sohol95';setFuel('Sohol95');
+}
+function setToday(){var d=new Date();document.getElementById('tx-date').value=d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');}
+function onCat(){
+  var c=document.getElementById('tx-cat').value;
+  document.getElementById('fg-fuel').style.display=c==='fuel'?'':'none';
+  document.getElementById('fg-amt-o').style.display=c==='fuel'?'none':'';
+  if(c==='fuel')fillFP();
+}
 function setFuel(t){selFuel=t;document.getElementById('fb95').classList.toggle('active',t==='Sohol95');document.getElementById('fb91').classList.toggle('active',t==='Sohol91');}
-function fillFP(){var ft=TXS.filter(function(t){return t.cat==='fuel'&&t.fuelPrice;});var h=document.getElementById('lph');if(ft.length){var l=ft[0];h.textContent='💡 ครั้งก่อน: '+(l.fuelType||'')+' ฿'+l.fuelPrice+'/ล.';if(!document.getElementById('tx-fpr').value)document.getElementById('tx-fpr').value=l.fuelPrice;}else h.textContent='';}
+function fillFP(){
+  var ft=TXS.filter(function(t){return t.cat==='fuel'&&t.fuelPrice;});
+  var lph=document.getElementById('lph');
+  if(ft.length){
+    var l=ft[0];
+    document.getElementById('lph-txt').textContent='💡 ราคาล่าสุด: '+(l.fuelType||'')+' ฿'+l.fuelPrice+'/ล. ('+fmtD(l.date)+')';
+    lph.style.display='flex';
+  }else lph.style.display='none';
+}
+function useLast(){
+  var ft=TXS.filter(function(t){return t.cat==='fuel'&&t.fuelPrice;});
+  if(ft.length){document.getElementById('tx-fpr').value=ft[0].fuelPrice;setFuel(ft[0].fuelType||'Sohol95');calcLit();}
+}
+
+// AUTO-CALC LITERS
+function calcLit(){
+  var price=parseFloat(document.getElementById('tx-fpr').value);
+  var amount=parseFloat(document.getElementById('tx-amt').value);
+  var box=document.getElementById('fuel-calc');
+  if(price>0&&amount>0){
+    var lit=(amount/price).toFixed(3);
+    document.getElementById('fc-lit').textContent=lit;
+    document.getElementById('tx-lit').value=lit;
+    box.style.display='flex';
+  }else{box.style.display='none';document.getElementById('tx-lit').value='';}
+}
+
 function saveTx(){
-  var cat=document.getElementById('tx-cat').value,date=document.getElementById('tx-date').value,km=document.getElementById('tx-km').value;
+  var cat=document.getElementById('tx-cat').value;
+  var date=document.getElementById('tx-date').value;
+  var km=document.getElementById('tx-km').value;
   if(!cat){showToast('กรุณาเลือกหมวดหมู่','error');return;}
   if(!date){showToast('กรุณาระบุวันที่','error');return;}
-  if(!km||parseInt(km)<=0){showToast('กรุณาระบุเลขไมล์','error');return;}
-  var tx={id:editId!==null?editId:Date.now(),cat:cat,date:date,km:parseInt(km),fuelType:cat==='fuel'?selFuel:'',liters:cat==='fuel'?document.getElementById('tx-lit').value:'',fuelPrice:cat==='fuel'?document.getElementById('tx-fpr').value:'',amount:document.getElementById('tx-amt').value,note:document.getElementById('tx-note').value,place:document.getElementById('tx-place').value,lat:document.getElementById('tx-lat').value,lng:document.getElementById('tx-lng').value,createdAt:new Date().toISOString()};
+  if(!km||parseInt(km)<0){showToast('กรุณาระบุเลขไมล์','error');return;}
+  var amt=cat==='fuel'?document.getElementById('tx-amt').value:document.getElementById('tx-amt-o').value;
+  var tx={id:editId!==null?editId:Date.now(),cat:cat,date:date,km:parseInt(km),fuelType:cat==='fuel'?selFuel:'',liters:cat==='fuel'?document.getElementById('tx-lit').value:'',fuelPrice:cat==='fuel'?document.getElementById('tx-fpr').value:'',amount:amt,note:document.getElementById('tx-note').value,place:document.getElementById('tx-place').value,lat:document.getElementById('tx-lat').value,lng:document.getElementById('tx-lng').value,createdAt:new Date().toISOString()};
   if(editId!==null){var i=TXS.findIndex(function(t){return t.id===editId;});if(i>=0){tx.createdAt=TXS[i].createdAt;TXS[i]=tx;}showToast('แก้ไขรายการแล้ว ✓','success');}
   else{TXS.unshift(tx);showToast('บันทึกรายการแล้ว ✓','success');}
   localStorage.setItem('hyu_tx',JSON.stringify(TXS));syncGS('transactions',tx);closeBS();renderAll();
@@ -333,26 +660,31 @@ function editTx(idx){
   var tx=TXS[idx];editId=tx.id;document.getElementById('bst').textContent='✏ แก้ไขรายการ';
   document.getElementById('tx-cat').value=tx.cat;document.getElementById('tx-date').value=tx.date;document.getElementById('tx-km').value=tx.km;
   selFuel=tx.fuelType||'Sohol95';setFuel(selFuel);
-  document.getElementById('tx-lit').value=tx.liters||'';document.getElementById('tx-fpr').value=tx.fuelPrice||'';document.getElementById('tx-amt').value=tx.amount||'';document.getElementById('tx-note').value=tx.note||'';document.getElementById('tx-place').value=tx.place||'';document.getElementById('tx-lat').value=tx.lat||'';document.getElementById('tx-lng').value=tx.lng||'';
-  document.getElementById('fg-fuel').style.display=tx.cat==='fuel'?'':'none';
-  if(tx.cat==='fuel')fillFP();
+  document.getElementById('tx-lit').value=tx.liters||'';document.getElementById('tx-fpr').value=tx.fuelPrice||'';
+  document.getElementById('tx-amt').value=tx.cat==='fuel'?(tx.amount||''):'';
+  document.getElementById('tx-amt-o').value=tx.cat!=='fuel'?(tx.amount||''):'';
+  document.getElementById('tx-note').value=tx.note||'';document.getElementById('tx-place').value=tx.place||'';
+  document.getElementById('tx-lat').value=tx.lat||'';document.getElementById('tx-lng').value=tx.lng||'';
+  onCat();if(tx.cat==='fuel'&&tx.fuelPrice&&tx.amount)calcLit();
   if(tx.lat&&tx.lng)showMap(parseFloat(tx.lat),parseFloat(tx.lng));
   document.getElementById('bso').classList.add('open');
 }
-function delTx(idx){if(!confirm('ลบรายการนี้?'))return;var id=TXS[idx].id;TXS.splice(idx,1);localStorage.setItem('hyu_tx',JSON.stringify(TXS));delGS(id);renderAll();showToast('ลบรายการแล้ว','success');}
-function autoLoc(){if(!navigator.geolocation)return;navigator.geolocation.getCurrentPosition(function(p){var lat=p.coords.latitude,lng=p.coords.longitude;localStorage.setItem('hyu_llat',lat.toFixed(6));localStorage.setItem('hyu_llng',lng.toFixed(6));revG(lat,lng,function(n){localStorage.setItem('hyu_lpl',n);});},function(){},{timeout:8000,maximumAge:120000});}
-function getGPS(){if(!navigator.geolocation){showToast('ไม่รองรับ GPS','error');return;}showToast('กำลังรับตำแหน่ง...','success');navigator.geolocation.getCurrentPosition(function(p){var lat=p.coords.latitude,lng=p.coords.longitude;document.getElementById('tx-lat').value=lat.toFixed(6);document.getElementById('tx-lng').value=lng.toFixed(6);localStorage.setItem('hyu_llat',lat.toFixed(6));localStorage.setItem('hyu_llng',lng.toFixed(6));showMap(lat,lng);revG(lat,lng,function(n){document.getElementById('tx-place').value=n;localStorage.setItem('hyu_lpl',n);});showToast('รับตำแหน่งแล้ว 📍','success');},function(e){showToast('GPS: '+e.message,'error');},{enableHighAccuracy:true,timeout:10000});}
-function revG(lat,lng,cb){fetch('https://nominatim.openstreetmap.org/reverse?lat='+lat+'&lon='+lng+'&format=json&accept-language=th').then(function(r){return r.json();}).then(function(d){var a=d.address;var parts=[a.amenity||a.shop||a.tourism||a.leisure,a.road,a.suburb||a.quarter||a.neighbourhood,a.city||a.town||a.village].filter(Boolean);cb(parts.slice(0,3).join(', ')||lat.toFixed(5)+', '+lng.toFixed(5));}).catch(function(){cb(lat.toFixed(5)+', '+lng.toFixed(5));});}
-function showMap(lat,lng){var el=document.getElementById('loc-map');el.style.display='block';setTimeout(function(){if(LM){LM.setView([lat,lng],16);if(LMk)LMk.setLatLng([lat,lng]);else LMk=L.marker([lat,lng],{draggable:true}).addTo(LM);LM.invalidateSize();}else{LM=L.map('loc-map',{zoomControl:true,attributionControl:false}).setView([lat,lng],16);L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:19}).addTo(LM);LMk=L.marker([lat,lng],{draggable:true}).addTo(LM);LMk.on('dragend',function(e){var p=e.target.getLatLng();document.getElementById('tx-lat').value=p.lat.toFixed(6);document.getElementById('tx-lng').value=p.lng.toFixed(6);revG(p.lat,p.lng,function(n){document.getElementById('tx-place').value=n;});});LM.invalidateSize();}},120);}
+function delTx(idx){if(!confirm('ลบรายการนี้?'))return;var id=TXS[idx].id;TXS.splice(idx,1);localStorage.setItem('hyu_tx',JSON.stringify(TXS));delGS(id);renderAll();showToast('ลบแล้ว','success');}
+
+// GPS
+function autoLoc(){if(!navigator.geolocation)return;navigator.geolocation.getCurrentPosition(function(p){var la=p.coords.latitude,ln=p.coords.longitude;localStorage.setItem('hyu_llat',la.toFixed(6));localStorage.setItem('hyu_llng',ln.toFixed(6));revG(la,ln,function(n){localStorage.setItem('hyu_lpl',n);});},function(){},{timeout:8000,maximumAge:60000});}
+function getGPS(){if(!navigator.geolocation){showToast('ไม่รองรับ GPS','error');return;}showToast('กำลังรับตำแหน่ง...','success');navigator.geolocation.getCurrentPosition(function(p){var la=p.coords.latitude,ln=p.coords.longitude;document.getElementById('tx-lat').value=la.toFixed(6);document.getElementById('tx-lng').value=ln.toFixed(6);localStorage.setItem('hyu_llat',la.toFixed(6));localStorage.setItem('hyu_llng',ln.toFixed(6));showMap(la,ln);revG(la,ln,function(n){document.getElementById('tx-place').value=n;localStorage.setItem('hyu_lpl',n);});showToast('รับตำแหน่งแล้ว 📍','success');},function(e){showToast('GPS: '+e.message,'error');},{enableHighAccuracy:true,timeout:10000});}
+function revG(la,ln,cb){fetch('https://nominatim.openstreetmap.org/reverse?lat='+la+'&lon='+ln+'&format=json&accept-language=th').then(function(r){return r.json();}).then(function(d){var a=d.address;var pts=[a.amenity||a.shop||a.tourism||a.leisure||a.fuel,a.road,a.suburb||a.quarter||a.neighbourhood,a.city||a.town||a.village].filter(Boolean);cb(pts.slice(0,3).join(', ')||la.toFixed(5)+','+ln.toFixed(5));}).catch(function(){cb(la.toFixed(5)+','+ln.toFixed(5));});}
+function showMap(la,ln){var el=document.getElementById('loc-map');el.style.display='block';setTimeout(function(){if(LM){LM.setView([la,ln],16);if(LMk)LMk.setLatLng([la,ln]);else LMk=L.marker([la,ln],{draggable:true}).addTo(LM);LM.invalidateSize();}else{LM=L.map('loc-map',{zoomControl:true,attributionControl:false}).setView([la,ln],16);L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:19}).addTo(LM);LMk=L.marker([la,ln],{draggable:true}).addTo(LM);LMk.on('dragend',function(e){var p=e.target.getLatLng();document.getElementById('tx-lat').value=p.lat.toFixed(6);document.getElementById('tx-lng').value=p.lng.toFixed(6);revG(p.lat,p.lng,function(n){document.getElementById('tx-place').value=n;});});LM.invalidateSize();}},120);}
+
 async function syncGS(s,p){if(!CFG.url)return;try{await fetch(CFG.url,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},body:JSON.stringify({sheet:s,payload:p})});}catch(e){}}
 async function delGS(id){if(!CFG.url)return;try{await fetch(CFG.url,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},body:JSON.stringify({sheet:'delete_tx',id:id})});}catch(e){}}
 function openConfig(){document.getElementById('cfg-url').value=CFG.url||'';document.getElementById('cfg-m').classList.add('open');}
 function closeConfig(){document.getElementById('cfg-m').classList.remove('open');}
 function saveConfig(){CFG.url=document.getElementById('cfg-url').value.trim();localStorage.setItem('hyu_cfg',JSON.stringify(CFG));closeConfig();showToast('บันทึกการตั้งค่าแล้ว ✓','success');}
+
 function fmtD(d){if(!d)return'—';var p=d.split('-');return parseInt(p[2])+' '+MO[parseInt(p[1])-1]+' '+(parseInt(p[0])+543);}
 function showToast(msg,type){var t=document.getElementById('toast');t.textContent=msg;t.className='toast '+(type||'success')+' show';clearTimeout(t._t);t._t=setTimeout(function(){t.classList.remove('show');},2800);}
-document.getElementById('bso').addEventListener('click',function(e){if(e.target===document.getElementById('bso'))closeBS();});
-document.getElementById('cfg-m').addEventListener('click',function(e){if(e.target===document.getElementById('cfg-m'))closeConfig();});
 </script>
 </body>
 </html>
